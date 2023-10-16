@@ -15,7 +15,7 @@ function rs_insert!(yt::YT, k, i=1) where {YT<:AbstractYoungTableau}
     return YT(r), i
 end
 
-construct_youngtableau(σ) = foldl(first∘rs_insert!, σ; init=YoungTableau{eltype(x)}())
+construct_youngtableau(σ) = foldl(first∘rs_insert!, σ; init=YoungTableau{eltype(σ)}())
 function construct_pq(x)
     T = eltype(x)
 	P, Q = YoungTableau{T}(), YoungTableau{T}()

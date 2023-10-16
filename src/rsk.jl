@@ -15,14 +15,32 @@ function schensted_insert!(yt::YT, k, i=1) where {YT<:AbstractYoungTableau}
     return YT(r), i
 end
 
-rs_norecord(σ) = foldl(first∘schensted_insert!, σ; init=YoungTableau{eltype(σ)}())
-function rs_pair(x)
-    T = eltype(x)
+rs_norecord(j) = foldl(first∘schensted_insert!, j; init=YoungTableau{eltype(j)}())
+function rs_pair(j)
+    T = eltype(j)
 	P, Q = YoungTableau{T}(), YoungTableau{T}()
-	for (n, k) in enumerate(x)
+	for (n, k) in enumerate(j)
 		P, i = schensted_insert!(P, k)
 		Q, _i = schensted_insert!(Q, n, i)
 		@assert i == _i
 	end
 	return P, Q
 end
+
+function rsk_pair(i, j)
+	P, Q = rs_pair(j)
+	broadcast!(k -> i[k], Q, Q)
+	return P, Q
+end
+
+function twoline_array(A::AbstractMatrix{<:Integer})
+	i, j = Int[], Int[]
+	for I in Iterators.flatten(eachrow(CartesianIndices(A)))
+		for _ in 1:A[I]
+			push!(i, I[1])
+			push!(j, I[2])
+		end
+	end
+	return i, j
+end
+rsk_pair(A::AbstractMatrix{<:Integer}) = rsk_pair(twoline_array(A)...)

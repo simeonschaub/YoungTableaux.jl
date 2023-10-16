@@ -1,6 +1,6 @@
 module YoungTableaux
 
-export YoungTableau, rows
+export YoungTableau, rows, construct_youngtableau, construct_pq, rs_insert!
 
 abstract type AbstractYoungTableau{T} end
 
@@ -25,5 +25,8 @@ end
 Base.IteratorSize(::AbstractYoungTableau) = Base.SizeUnknown()
 Base.eltype(::AbstractYoungTableau{T}) where {T} = T
 Base.iterate(yt::AbstractYoungTableau, st...) = iterate(Iterators.flatten(rows(yt)), st...)
+
+include("show.jl")
+include("rsk.jl")
 
 end

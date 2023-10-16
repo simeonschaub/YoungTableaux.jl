@@ -15,9 +15,10 @@ function rs_insert!(yt::YT, k, i=1) where {YT<:AbstractYoungTableau}
     return YT(r), i
 end
 
-construct_youngtableau(σ) = foldl(first∘rs_insert!, σ; init=YoungTableau())
-function construct_pq(x) #; semistandard_Q=false)
-	P, Q = YoungTableau(), YoungTableau()
+construct_youngtableau(σ) = foldl(first∘rs_insert!, σ; init=YoungTableau{eltype(x)}())
+function construct_pq(x)
+    T = eltype(x)
+	P, Q = YoungTableau{T}(), YoungTableau{T}()
 	for (n, k) in enumerate(x)
 		P, i = rs_insert!(P, k)
 		Q, _i = rs_insert!(Q, n, i)

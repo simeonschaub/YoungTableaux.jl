@@ -1,6 +1,7 @@
 module YoungTableaux
 
-export YoungTableau, schensted_insert!, rs_norecord, rs_pair, rsk_pair
+export YoungTableau, schensted_insert!, rs_norecord, rs_pair, rsk_pair, Partition
+export ≺, ≻, ≺′, ≻′
 
 abstract type AbstractYoungTableau{T} end
 
@@ -33,6 +34,7 @@ Base.iterate(yt::AbstractYoungTableau, st...) = iterate(Iterators.flatten(rows(y
 Base.copy((; rows)::YoungTableau) = YoungTableau(copy.(rows))
 
 include("show.jl")
+include("partitions.jl")
 include("broadcast.jl")
 include("rsk.jl")
 

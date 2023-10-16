@@ -1,20 +1,22 @@
 using UUIDs
 
-function Base.show(io::IO, ::MIME"text/html", yt::YoungTableau)
-    (; rows) = yt
+_show_entry(io::IO, yt, m) = show(IOContext(io, :typeinfo=>eltype(yt)), m)
+_string_entry(yt) = m -> sprint(_show_entry, yt, m)
+function Base.show(io::IO, ::MIME"text/html", yt::AbstractYoungTableau)
+    rows = YoungTableaux.rows(yt)
     class = string("yt", uuid1())
     print(io, """
         <table style='border: none'>
         <style scoped>
             .$class {
                 border: 1pt solid;
-                width: $(100 / (isempty(rows) ? 100 : length(rows[1])))%;
+                width: $(100 / (isempty(rows) ? 100 : rowlength(yt)))%;
                 padding: 8px;
             }
             .$class div {
                 font-size: large;
                 aspect-ratio: 1;
-                min-width: max($(maximum(textwidth∘string, yt))ch, 1em);
+                min-width: max($(maximum(textwidth∘_string_entry(yt), yt))ch, 1em);
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -24,7 +26,9 @@ function Base.show(io::IO, ::MIME"text/html", yt::YoungTableau)
     for row in rows
         print(io, "<tr>")
         for m in row
-            print(io, "<td class=$class><div><span>", m, "</span></div></td>")
+            print(io, "<td class=$class><div><span>")
+            _show_entry(io, yt, m)
+            print(io, "</span></div></td>")
         end
         print(io, "</tr>")
     end

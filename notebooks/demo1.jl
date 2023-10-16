@@ -28,6 +28,21 @@ YoungTableaux.twoline_array(A)
 # ╔═╡ 05a4f3ac-79d6-44cb-ab0c-31ad83ba2646
 rsk_pair(A)
 
+# ╔═╡ 2765a6b9-fc85-4cca-b23a-0938f9d984c2
+p1 = Partition([3, 2, 2, 1])
+
+# ╔═╡ 66f37bc8-7dd4-4026-8c0d-debbd7bb5490
+p2 = Partition(P)
+
+# ╔═╡ 9f52891e-ed31-4fa3-b69c-dcf892fe051c
+p1 ≻ p2
+
+# ╔═╡ 94e456ce-ac9a-42fa-aee3-cb91b08c7eb3
+p1 ≺ p2
+
+# ╔═╡ 0a40014d-adb5-45e2-aa13-cf80c037af81
+(≺)^3*((≺′)*(≻))^2
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -219,5 +234,10 @@ version = "17.4.0+0"
 # ╠═abc092dd-bcd1-4637-9aa8-de0101e3265d
 # ╠═b49286f6-6369-457a-9112-ebd635807f10
 # ╠═05a4f3ac-79d6-44cb-ab0c-31ad83ba2646
+# ╠═2765a6b9-fc85-4cca-b23a-0938f9d984c2
+# ╠═66f37bc8-7dd4-4026-8c0d-debbd7bb5490
+# ╠═9f52891e-ed31-4fa3-b69c-dcf892fe051c
+# ╠═94e456ce-ac9a-42fa-aee3-cb91b08c7eb3
+# ╠═0a40014d-adb5-45e2-aa13-cf80c037af81
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002

@@ -4,7 +4,7 @@ _show_entry(io::IO, yt, m) = show(IOContext(io, :typeinfo=>eltype(yt)), m)
 _string_entry(yt) = m -> sprint(_show_entry, yt, m)
 function Base.show(io::IO, ::MIME"text/html", yt::AbstractYoungTableau)
     rows = YoungTableaux.rows(yt)
-    class = string("yt", uuid1())
+    class = get(io, :html_class, string("yt-", uuid1()))
     print(io, """
         <table style='border: none'>
         <style scoped>
@@ -23,10 +23,10 @@ function Base.show(io::IO, ::MIME"text/html", yt::AbstractYoungTableau)
             }
         </style>
         """)
-    for row in rows
+    for (i, row) in pairs(rows)
         print(io, "<tr>")
-        for m in row
-            print(io, "<td class=$class><div><span>")
+        for (j, m) in pairs(row)
+            print(io, "<td id=c$i-$j class=$class><div><span>")
             _show_entry(io, yt, m)
             print(io, "</span></div></td>")
         end

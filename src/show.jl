@@ -41,42 +41,50 @@ using HypertextLiteral
 function visualize_insert(yt, x, x_row; to_replace=nothing, delete=false)
     class = string("vis-container-", uuid1())
     class_yt = string("yt-", uuid1())
-    maxlen = max(maximum(textwidth∘_string_entry(yt), yt; init=0), textwidth(_string_entry(yt)(x)))
+    maxlen = max(maximum(textwidth∘_string_entry(yt), yt; init=0), textwidth(_string_entry(yt)(x)))+1
+    template = join((
+        "\"$(join(
+                  [fill(i > nrows(yt) ? "." : "yt", rowlength(yt)); "."; i == x_row ? "x" : ". "],
+                  " ",
+                 ))\"" for i in 1:nrows(yt)+1),
+        "\n",
+    )
     @htl """
     <style>
     @keyframes replace {
       from {}
-      to {transform: translateX($(-100*(nrows(yt) - to_replace[2] + 3))%);}
+      to {transform: translateX($(-100*(rowlength(yt) - to_replace[2] + 2))%);}
     }
     @keyframes pop {
       0% {}
       50% {transform: translateY(-100%);}
       100% {
-        transform: translateY(100%) translateX($(100*(nrows(yt) - to_replace[2] + 3))%);
+        transform: translateY(100%) translateX($(100*(rowlength(yt) - to_replace[2] + 3))%);
         outline: 1pt solid;
       }
     }
 
     .$class {
     	display: grid;
-    	grid-template-columns: $(rowlength(yt))fr repeat(2, 1fr);
+    	/*grid-template-columns: $(rowlength(yt))fr repeat(2, 1fr);*/
+        grid-auto-columns: 1fr;
     	width: fit-content;
     	margin: auto;
     	margin-block-end: var(--pluto-cell-spacing);
     	margin-block-start: var(--pluto-cell-spacing);
+        grid-template: $(template);
     }
 
     .$class #yt {
-    	grid-area: 1/1/$(rowlength(yt))/$(nrows(yt));
+    	grid-area: yt;
     }
     .$class #yt table {
     	margin: 0;
     }
     .$class #x {
+        grid-area: x;
         margin-left: -1pt;
         margin-right: 1pt;
-        grid-column: 3;
-        grid-row: $x_row;
         background-color: green;
         $(if delete
             @htl """

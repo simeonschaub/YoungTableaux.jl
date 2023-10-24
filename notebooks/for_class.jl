@@ -70,8 +70,11 @@ x = [1,3,3,2,2,1,2]
 # ╔═╡ 74b9394b-c57b-4d47-ac2e-0925cb46fac1
 rs_pair(x)
 
+# ╔═╡ ef2fac57-ff72-400a-bc18-2e4eadafac11
+s = uppercase("richardpstanley")
+
 # ╔═╡ 65cbdc74-cec1-48cd-ae6a-a0cd5fca424e
-P, Q = rs_pair(uppercase("richardpstanley"))
+P, Q = rs_pair(s)
 
 # ╔═╡ 4e1a8c4a-b7bd-4e4d-a3ba-5b9493bfe769
 ('A':'Z')[Q]
@@ -80,7 +83,7 @@ P, Q = rs_pair(uppercase("richardpstanley"))
 begin
 	_STEPS = Any[]
 	rs_pair(uppercase("richardpstanley"); log=_STEPS)
-	STEPS = collect(Iterators.flatten(enumerate.(_STEPS)))
+	STEPS = [(idx, x) for (idx, y) in enumerate(_STEPS) for x in y]
 end
 
 # ╔═╡ ed00d350-b394-4db9-ad7a-c0a9db65b6a6
@@ -130,11 +133,15 @@ begin
 end
 
 # ╔═╡ b4fcb4ce-5474-49e5-81c6-0cf6a2024643
-@bind i SeekingSlider(1:2length(STEPS), 1)
+@bind i SeekingSlider(eachindex(STEPS), 1)
 
 # ╔═╡ e3c074b4-7d4e-4a02-8d14-ffdc54439ecb
-let (idx, (yt, to_replace, x)) = STEPS[(i+1)÷2]
-	YoungTableaux.visualize_insert(yt, x, to_replace[2]; to_replace, delete=iseven(i))
+let (idx, (yt, to_replace, x)) = STEPS[i]
+	@htl """
+	$(YoungTableaux.visualize_insert(yt, x, to_replace[1]; to_replace, delete=true))
+	<br>
+	$(YoungTableau([collect(' '^idx * s[idx+1:end])]))
+	"""
 end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
@@ -349,10 +356,11 @@ version = "17.4.0+0"
 # ╠═47e58152-f784-40e6-9616-eb7d31fa606c
 # ╠═2626db42-96cb-49c6-ab26-8053fa7fab66
 # ╠═74b9394b-c57b-4d47-ac2e-0925cb46fac1
+# ╠═ef2fac57-ff72-400a-bc18-2e4eadafac11
 # ╠═65cbdc74-cec1-48cd-ae6a-a0cd5fca424e
 # ╠═4e1a8c4a-b7bd-4e4d-a3ba-5b9493bfe769
 # ╠═d29210b7-f3fd-4a66-997a-9f19373290ec
-# ╠═b4fcb4ce-5474-49e5-81c6-0cf6a2024643
+# ╟─b4fcb4ce-5474-49e5-81c6-0cf6a2024643
 # ╠═e3c074b4-7d4e-4a02-8d14-ffdc54439ecb
 # ╠═50401b76-6c95-48c9-8ce6-a96281e911ff
 # ╠═ed00d350-b394-4db9-ad7a-c0a9db65b6a6

@@ -26,6 +26,15 @@ end
 # ╔═╡ 50401b76-6c95-48c9-8ce6-a96281e911ff
 using HypertextLiteral, AbstractPlutoDingetjes.Bonds
 
+# ╔═╡ ef2fac57-ff72-400a-bc18-2e4eadafac11
+s = uppercase("juliarules")
+
+# ╔═╡ 2626db42-96cb-49c6-ab26-8053fa7fab66
+x = [1,3,3,2,2,1,2]
+
+# ╔═╡ 877b720b-b96d-4316-b0d2-8cb65aef6304
+name = uppercase("richardpstanley")
+
 # ╔═╡ f78d304e-9bc6-41cd-8cd4-62b88215ff19
 begin
 	log!(::Nothing, _...) = nothing
@@ -64,17 +73,11 @@ function rs_pair(j; log=nothing)
 	return YoungTableau(P), YoungTableau(Q)
 end
 
-# ╔═╡ 2626db42-96cb-49c6-ab26-8053fa7fab66
-x = [1,3,3,2,2,1,2]
-
 # ╔═╡ 74b9394b-c57b-4d47-ac2e-0925cb46fac1
 rs_pair(x)
 
-# ╔═╡ ef2fac57-ff72-400a-bc18-2e4eadafac11
-s = uppercase("richardpstanley")
-
 # ╔═╡ 65cbdc74-cec1-48cd-ae6a-a0cd5fca424e
-P, Q = rs_pair(s)
+P, Q = rs_pair(name)
 
 # ╔═╡ 4e1a8c4a-b7bd-4e4d-a3ba-5b9493bfe769
 ('A':'Z')[Q]
@@ -82,9 +85,9 @@ P, Q = rs_pair(s)
 # ╔═╡ d29210b7-f3fd-4a66-997a-9f19373290ec
 begin
 	_STEPS = Any[]
-	rs_pair(uppercase("richardpstanley"); log=_STEPS)
+	rs_pair(s; log=_STEPS)
 	STEPS = [(idx, x) for (idx, y) in enumerate(_STEPS) for x in y]
-end
+end;
 
 # ╔═╡ ed00d350-b394-4db9-ad7a-c0a9db65b6a6
 begin
@@ -350,18 +353,19 @@ version = "17.4.0+0"
 """
 
 # ╔═╡ Cell order:
-# ╠═4db253c8-6c3c-11ee-2921-45f9793427aa
-# ╠═f78d304e-9bc6-41cd-8cd4-62b88215ff19
+# ╠═ef2fac57-ff72-400a-bc18-2e4eadafac11
+# ╠═b4fcb4ce-5474-49e5-81c6-0cf6a2024643
+# ╠═e3c074b4-7d4e-4a02-8d14-ffdc54439ecb
 # ╠═0acd1cda-9a65-4730-a451-6369dfbb92f8
 # ╠═47e58152-f784-40e6-9616-eb7d31fa606c
 # ╠═2626db42-96cb-49c6-ab26-8053fa7fab66
 # ╠═74b9394b-c57b-4d47-ac2e-0925cb46fac1
-# ╠═ef2fac57-ff72-400a-bc18-2e4eadafac11
+# ╠═877b720b-b96d-4316-b0d2-8cb65aef6304
 # ╠═65cbdc74-cec1-48cd-ae6a-a0cd5fca424e
 # ╠═4e1a8c4a-b7bd-4e4d-a3ba-5b9493bfe769
 # ╠═d29210b7-f3fd-4a66-997a-9f19373290ec
-# ╟─b4fcb4ce-5474-49e5-81c6-0cf6a2024643
-# ╠═e3c074b4-7d4e-4a02-8d14-ffdc54439ecb
+# ╠═f78d304e-9bc6-41cd-8cd4-62b88215ff19
+# ╠═4db253c8-6c3c-11ee-2921-45f9793427aa
 # ╠═50401b76-6c95-48c9-8ce6-a96281e911ff
 # ╠═ed00d350-b394-4db9-ad7a-c0a9db65b6a6
 # ╟─00000000-0000-0000-0000-000000000001

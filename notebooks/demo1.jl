@@ -11,7 +11,7 @@ begin
 		eval(:(Pkg.activate(Pkg.instantiate, $p)))
 		p in LOAD_PATH || @show pushfirst!(LOAD_PATH, p)
 	end
-	using YoungTableaux: YoungTableaux, YoungTableau, rows
+	using YoungTableaux
 end
 
 # ╔═╡ 2626db42-96cb-49c6-ab26-8053fa7fab66

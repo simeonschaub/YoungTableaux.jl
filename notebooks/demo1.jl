@@ -1,16 +1,17 @@
 ### A Pluto.jl notebook ###
-# v0.19.27
+# v0.19.29
 
 using Markdown
 using InteractiveUtils
 
 # ╔═╡ 4db253c8-6c3c-11ee-2921-45f9793427aa
 begin
-	using Revise
+	using Revise, Pkg
 	let p=dirname(pwd())
+		eval(:(Pkg.activate(Pkg.instantiate, $p)))
 		p in LOAD_PATH || @show pushfirst!(LOAD_PATH, p)
 	end
-	using YoungTableaux
+	using YoungTableaux: YoungTableaux, YoungTableau, rows
 end
 
 # ╔═╡ 2626db42-96cb-49c6-ab26-8053fa7fab66
@@ -46,6 +47,7 @@ p1 ≺ p2
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
+Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
 
 [compat]
@@ -58,7 +60,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.9.3"
 manifest_format = "2.0"
-project_hash = "857d3531187afaff9467de616ab4cc3e1cad1d0e"
+project_hash = "03842c80a51e87788054252c579f8b50e7d1b2bb"
 
 [[deps.ArgTools]]
 uuid = "0dad84c5-d112-42e6-8d28-ef12dabb789f"

@@ -16,8 +16,9 @@ end
 
 # ╔═╡ 4db253c8-6c3c-11ee-2921-45f9793427aa
 begin
-	using Revise
+	using Revise, Pkg
 	let p=dirname(pwd())
+		eval(:(Pkg.activate(Pkg.instantiate, $p)))
 		p in LOAD_PATH || @show pushfirst!(LOAD_PATH, p)
 	end
 	using YoungTableaux: YoungTableaux, YoungTableau, rows
@@ -152,6 +153,7 @@ PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
 AbstractPlutoDingetjes = "6e696c72-6542-2067-7265-42206c756150"
 HypertextLiteral = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
+Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
 Revise = "295af30f-e4ad-537b-8983-00126c2a3abe"
 
 [compat]
@@ -166,7 +168,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.9.3"
 manifest_format = "2.0"
-project_hash = "323ccf76ee7a069c5bb2c179cca5c435b16a867f"
+project_hash = "f03c7f4d351a5326d8084218bae1e0b941ee6bcd"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]

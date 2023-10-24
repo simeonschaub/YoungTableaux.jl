@@ -1,6 +1,6 @@
 using UUIDs
 
-_show_entry(io::IO, yt, m) = show(IOContext(io, :typeinfo=>eltype(yt)), m)
+_show_entry(io::IO, yt, m) = print(IOContext(io, :typeinfo=>eltype(yt)), m)
 _string_entry(yt) = m -> sprint(_show_entry, yt, m)
 function Base.show(io::IO, ::MIME"text/html", yt::AbstractYoungTableau)
     rows = YoungTableaux.rows(yt)
@@ -16,7 +16,7 @@ function Base.show(io::IO, ::MIME"text/html", yt::AbstractYoungTableau)
             .$class div {
                 font-size: large;
                 aspect-ratio: 1;
-                min-width: max($(maximum(textwidth∘_string_entry(yt), yt))ch, 1em);
+                min-width: max($(maximum(textwidth∘_string_entry(yt), yt; init=0))ch, 1em);
                 display: flex;
                 align-items: center;
                 justify-content: center;

@@ -1,6 +1,7 @@
 module YoungTableaux
 
-export YoungTableau, schensted_insert!, rs_norecord, rs_pair, rsk_pair, Partition
+export YoungTableau, schensted_insert!, rs_norecord, rs_pair, rsk_pair, Partition,
+    row, rows, nrows, rowlength
 export ≺, ≻, ≺′, ≻′
 
 abstract type AbstractYoungTableau{T} end

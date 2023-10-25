@@ -41,7 +41,9 @@ using HypertextLiteral
 function visualize_insert(yt, x, x_row; to_replace=nothing, delete=false)
     class = string("vis-container-", uuid1())
     class_yt = string("yt-", uuid1())
-    maxlen = max(maximum(textwidth∘_string_entry(yt), yt; init=0), textwidth(_string_entry(yt)(x)))+1
+    replace = string("replace-", uuid1())
+    pop = string("pop-", uuid1())
+    maxlen = max(maximum(textwidth∘_string_entry(yt), yt; init=0), textwidth(_string_entry(yt)(x)))
     template = join((
         "\"$(join(
                   [fill(i > nrows(yt) ? "." : "yt", rowlength(yt)); "."; i == x_row ? "x" : ". "],
@@ -51,22 +53,20 @@ function visualize_insert(yt, x, x_row; to_replace=nothing, delete=false)
     )
     @htl """
     <style>
-    @keyframes replace {
+    @keyframes $replace {
       from {}
       to {transform: translateX($(-100*(rowlength(yt) - to_replace[2] + 2))%);}
     }
-    @keyframes pop {
+    @keyframes $pop {
       0% {}
-      50% {transform: translateY(-100%);}
+      50% {transform: translateY(-100%); outline: 1pt solid;}
       100% {
         transform: translateY(100%) translateX($(100*(rowlength(yt) - to_replace[2] + 3))%);
-        outline: 1pt solid;
       }
     }
 
     .$class {
     	display: grid;
-    	/*grid-template-columns: $(rowlength(yt))fr repeat(2, 1fr);*/
         grid-auto-columns: 1fr;
     	width: fit-content;
     	margin: auto;
@@ -88,7 +88,7 @@ function visualize_insert(yt, x, x_row; to_replace=nothing, delete=false)
         background-color: green;
         $(if delete
             @htl """
-            animation-name: replace;
+            animation-name: $replace;
             animation-duration: 1s;
             animation-fill-mode: forwards;
             """
@@ -96,11 +96,11 @@ function visualize_insert(yt, x, x_row; to_replace=nothing, delete=false)
     }
     $(if to_replace !== nothing
         @htl """
-        .$class #c$(to_replace[1])-$(to_replace[2]) {
+        .$class #c$(to_replace[1])-$(to_replace[2]).$class_yt {
             background-color: darkred;
             $(if delete
                 @htl """
-                animation-name: pop;
+                animation-name: $pop;
                 animation-duration: 2s;
                 animation-fill-mode: forwards;
                 """

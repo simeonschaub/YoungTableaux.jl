@@ -51,11 +51,15 @@ function visualize_insert(yt, x, x_row; to_replace=nothing, delete=false)
                  ))\"" for i in 1:nrows(yt)+1),
         "\n",
     )
+    translate_x = rowlength(yt) - to_replace[2] + 2
     @htl """
     <style>
     @keyframes $replace {
       from {}
-      to {transform: translateX($(-100*(rowlength(yt) - to_replace[2] + 2))%);}
+      to {
+        transform: translateX(calc($(-100*translate_x)% - $(rowlength(yt)/5 - 1)pt));
+        /*transform: translateX($(-100*(rowlength(yt) - to_replace[2] + 2))%);*/
+      }
     }
     @keyframes $pop {
       0% {}
@@ -80,11 +84,10 @@ function visualize_insert(yt, x, x_row; to_replace=nothing, delete=false)
     }
     .$class #yt table {
     	margin: 0;
+        width: 100%;
     }
     .$class #x {
         grid-area: x;
-        margin-left: -1pt;
-        margin-right: 1pt;
         background-color: green;
         $(if delete
             @htl """
@@ -93,6 +96,11 @@ function visualize_insert(yt, x, x_row; to_replace=nothing, delete=false)
             animation-fill-mode: forwards;
             """
         end)
+        /*$(if to_replace[1] > nrows(yt)
+            @htl """
+            margin-top: -0.5pt;
+            """
+        end)*/
     }
     $(if to_replace !== nothing
         @htl """

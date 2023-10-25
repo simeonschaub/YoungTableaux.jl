@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.29
+# v0.19.30
 
 using Markdown
 using InteractiveUtils
@@ -67,6 +67,12 @@ end
 
 # ╔═╡ 61851b37-4fdf-4702-82ab-9fdca6cf42d2
 π = randperm(16)
+
+# ╔═╡ 37dc5a55-8dc7-4dfa-854b-2463bc1863bc
+md"""
+Logan-Shepp limit shape on [-2,2] when rotated 45 degrees
+``\frac{2}{\pi}(x*\arcsin(x)/2 + \sqrt{4-x^2} )``
+"""
 
 # ╔═╡ e7a3d1e3-9695-4f97-a46c-7b2e6c41e1dd
 # Reference:
@@ -1394,6 +1400,7 @@ version = "1.4.1+1"
 # ╠═e76fa719-b8a2-4a3d-bf29-bbac6b64808b
 # ╠═3abc835b-2f8a-4553-92c2-41e47b3e32f4
 # ╠═200c88f2-159a-4693-bee8-e3ccc271d781
+# ╟─37dc5a55-8dc7-4dfa-854b-2463bc1863bc
 # ╠═e7a3d1e3-9695-4f97-a46c-7b2e6c41e1dd
 # ╠═c0b78cdc-5702-44c4-8989-ab86587daa2b
 # ╠═2626db42-96cb-49c6-ab26-8053fa7fab66

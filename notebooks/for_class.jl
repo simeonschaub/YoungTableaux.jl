@@ -42,6 +42,11 @@ begin
 	Text(String(s))
 end
 
+# ╔═╡ b4fcb4ce-5474-49e5-81c6-0cf6a2024643
+@htl """
+Show Record $(@bind show_Q CheckBox())
+"""
+
 # ╔═╡ 0acd1cda-9a65-4730-a451-6369dfbb92f8
 function schensted_insert!(rows, k, i=1)
 	i > length(rows) && return push!(rows, [k]), i
@@ -218,12 +223,8 @@ begin
 	Bonds.possible_values((; r)::SeekingSlider) = r
 end
 
-# ╔═╡ b4fcb4ce-5474-49e5-81c6-0cf6a2024643
-@htl """
-$(@bind i SeekingSlider(eachindex(STEPS_P), 1))
-<br><br>
-Show Record $(@bind show_Q CheckBox())
-"""
+# ╔═╡ 9f1c4744-b629-4bf8-b8b2-caf812efc496
+@bind i SeekingSlider(eachindex(STEPS_P), 1)
 
 # ╔═╡ e3c074b4-7d4e-4a02-8d14-ffdc54439ecb
 visualize_step(STEPS_P[i], s, STEPS_Q; show_Q)
@@ -1410,6 +1411,7 @@ version = "1.4.1+1"
 
 # ╔═╡ Cell order:
 # ╠═ef2fac57-ff72-400a-bc18-2e4eadafac11
+# ╟─9f1c4744-b629-4bf8-b8b2-caf812efc496
 # ╟─b4fcb4ce-5474-49e5-81c6-0cf6a2024643
 # ╠═e3c074b4-7d4e-4a02-8d14-ffdc54439ecb
 # ╠═0acd1cda-9a65-4730-a451-6369dfbb92f8

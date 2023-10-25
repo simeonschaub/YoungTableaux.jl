@@ -72,6 +72,7 @@ function visualize_insert(yt, x, x_row; to_replace=nothing, delete=false)
     	display: grid;
         grid-auto-columns: 1fr;
     	width: fit-content;
+    	height: fit-content;
     	margin: auto;
     	margin-block-end: var(--pluto-cell-spacing);
     	margin-block-start: var(--pluto-cell-spacing);

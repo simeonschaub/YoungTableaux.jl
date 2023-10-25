@@ -37,7 +37,10 @@ using HypertextLiteral, AbstractPlutoDingetjes.Bonds
 using UUIDs
 
 # ╔═╡ ef2fac57-ff72-400a-bc18-2e4eadafac11
-s = uppercase("juliarules")
+begin
+	s = collect("习近平αYourN习近平ameHere习近平");
+	String(s)
+end
 
 # ╔═╡ 0acd1cda-9a65-4730-a451-6369dfbb92f8
 function schensted_insert!(rows, k, i=1)

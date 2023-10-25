@@ -124,12 +124,12 @@ function _schensted_insert!(rows, k, i=1; log=nothing)
 end
 
 # ╔═╡ 20df36ae-9191-4700-b963-7f80cec971d8
-function _rs_pair(j; log=nothing)
+function _rs_pair(j; log_P=nothing, log_Q=nothing)
     T = eltype(j)
 	P, Q = Vector{eltype(j)}[], Vector{Int}[]
 	for (n, k) in enumerate(j)
-		P, i = _schensted_insert!(P, k; log=sublog!(log))
-		Q, _i = schensted_insert!(Q, n, i)
+		P, i = _schensted_insert!(P, k; log=sublog!(log_P))
+		Q, _i = _schensted_insert!(Q, n, i; log=sublog!(log_Q))
 		@assert i == _i
 	end
 	return YoungTableau(P), YoungTableau(Q)
@@ -137,21 +137,36 @@ end
 
 # ╔═╡ d29210b7-f3fd-4a66-997a-9f19373290ec
 function calc_steps(s)
-	_STEPS = Any[]
-	_rs_pair(s; log=_STEPS)
-	return [(idx, x) for (idx, y) in enumerate(_STEPS) for x in y]
+	_STEPS_P, _STEPS_Q = Any[], Any[]
+	_rs_pair(s; log_P=_STEPS_P, log_Q=_STEPS_Q)
+	return (
+		[(idx, x, i == lastindex(y)) for (idx, y) in enumerate(_STEPS_P) for (i, x) in enumerate(y)],
+		[x for (idx, y) in enumerate(_STEPS_Q) for x in y],
+	)
 end
 
 # ╔═╡ 358b2401-9c0b-43aa-816a-7312db17f677
-STEPS_Π = calc_steps(π);
+STEPS_P_Π, STEPS_Q_Π = calc_steps(π);
 
 # ╔═╡ e455823e-62df-4b0d-a145-584d54557353
-STEPS = calc_steps(s);
+STEPS_P, STEPS_Q = calc_steps(s);
+
+# ╔═╡ 9c7803cf-cf92-4573-a6b8-d88e51b5919e
+function visualize_insert((yt, to_replace, x); delete=true)
+	YoungTableaux.visualize_insert(yt, x, to_replace[1]; to_replace, delete)
+end
 
 # ╔═╡ 8e43cf19-0a50-486d-8220-3372ff41801f
-function visualize_step((idx, (yt, to_replace, x)), s)
+function visualize_step(STEP_P, s, STEPS_Q=nothing; show_Q=false)
+	idx = STEP_P[1]
 	@htl """
-	$(YoungTableaux.visualize_insert(yt, x, to_replace[1]; to_replace, delete=true))
+	<br>
+	<div style="display: flex">
+	$(visualize_insert(STEP_P[2]))
+	$(if show_Q
+		visualize_insert(Base.setindex(STEPS_Q[idx], (STEP_P[2][2][1], STEP_P[3] ? STEPS_Q[idx][2][2] : 0), 2); delete=STEP_P[3])
+	end)
+	</div>
 	<br>
 	$(YoungTableau([collect(Iterators.flatten((' '^idx, s[idx+1:end])))]))
 	"""
@@ -204,16 +219,20 @@ begin
 end
 
 # ╔═╡ b4fcb4ce-5474-49e5-81c6-0cf6a2024643
-@bind i SeekingSlider(eachindex(STEPS), 1)
+@htl """
+$(@bind i SeekingSlider(eachindex(STEPS_P), 1))
+<br><br>
+Show Record $(@bind show_Q CheckBox())
+"""
 
 # ╔═╡ e3c074b4-7d4e-4a02-8d14-ffdc54439ecb
-visualize_step(STEPS[i], s)
+visualize_step(STEPS_P[i], s, STEPS_Q; show_Q)
 
 # ╔═╡ 7d3f7f83-5af3-4d4b-8299-2f429d026622
-@bind i_π SeekingSlider(eachindex(STEPS_Π), 1)
+@bind i_π SeekingSlider(eachindex(STEPS_P_Π), 1)
 
 # ╔═╡ 9bc40166-338b-4060-bb76-16e30e3f7086
-visualize_step(STEPS_Π[i_π], π)
+visualize_step(STEPS_P_Π[i_π], π, STEPS_Q_Π; show_Q)
 
 # ╔═╡ 3abc835b-2f8a-4553-92c2-41e47b3e32f4
 @bind N SeekingSlider(0:20:700, 0)
@@ -1416,6 +1435,7 @@ version = "1.4.1+1"
 # ╠═20df36ae-9191-4700-b963-7f80cec971d8
 # ╠═d29210b7-f3fd-4a66-997a-9f19373290ec
 # ╠═e455823e-62df-4b0d-a145-584d54557353
+# ╠═9c7803cf-cf92-4573-a6b8-d88e51b5919e
 # ╠═8e43cf19-0a50-486d-8220-3372ff41801f
 # ╠═4db253c8-6c3c-11ee-2921-45f9793427aa
 # ╠═50401b76-6c95-48c9-8ce6-a96281e911ff

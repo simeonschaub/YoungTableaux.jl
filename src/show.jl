@@ -58,14 +58,13 @@ function visualize_insert(yt, x, x_row; to_replace=nothing, delete=false)
       from {}
       to {
         transform: translateX(calc($(-100*translate_x)% - $(rowlength(yt)/5 - 1)pt));
-        /*transform: translateX($(-100*(rowlength(yt) - to_replace[2] + 2))%);*/
       }
     }
     @keyframes $pop {
       0% {}
       50% {transform: translateY(-100%); outline: 1pt solid;}
       100% {
-        transform: translateY(100%) translateX($(100*(rowlength(yt) - to_replace[2] + 3))%);
+        transform: translateY(100%) translateX($(100*(rowlength(yt) - to_replace[2] + 2))%);
       }
     }
 

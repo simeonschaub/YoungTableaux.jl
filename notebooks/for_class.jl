@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.19.29
+# v0.19.30
 
 using Markdown
 using InteractiveUtils
@@ -38,7 +38,7 @@ using UUIDs
 
 # ╔═╡ ef2fac57-ff72-400a-bc18-2e4eadafac11
 begin
-	s = collect("YOURNAMEHERE这个很有趣");
+	s = collect("YOURNAMEHERE 정성우");
 	Text(String(s))
 end
 
@@ -245,13 +245,14 @@ begin
 	Y = [i for i in 1:nrows(Z) for j in 1:length(row(Z, i))]
 	# Logan-Shepp Limit
 	# -2 <= u <- 2
-	Ω(u) = [abs(ℓ/2) > 1 ? abs(ℓ) : 2/pi * (ℓ * asin(ℓ/2) + sqrt(4-ℓ^2)) for ℓ ∈ u ] 
+	Ω(u) = [abs(ℓ/2) > 1 ? abs(ℓ) : 2/pi*(ℓ * asin(ℓ/2) + sqrt(4-ℓ^2)) for ℓ ∈ u ] 
 	u = (X - Y)/sqrt(N)#scale by cardinality of partition
 	v = (X + Y)/sqrt(N)
   	p1 = scatter(u,v,markershape=:circle,markersize=:100/sqrt(N),
 		markercolor = :white,
     	markerstrokewidth = 0.5,legend=false)
-	plot!(p1, sort(u), Ω(sort(u)),linewidth=:5,ylims=(0,2.5),xlims=(-2.5,2.5),ratio=1)
+	plot!(ℓ->2/pi*(ℓ * asin(ℓ/2) + sqrt(4-ℓ^2))   ,-2,2,linewidth=:3,ylims=(0,2.5),xlims=(-2.5,2.5),ratio=1,color=:red)
+	#plot!(p1, sort(u), Ω(sort(u)),linewidth=:5,ylims=(0,2.5),xlims=(-2.5,2.5),ratio=1)
 end
 
 # ╔═╡ 01059a74-a4e4-4962-8515-a8a333176a15

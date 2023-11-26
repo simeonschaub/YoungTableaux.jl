@@ -14,7 +14,10 @@ YoungTableau{T}() where {T} = YoungTableau(Vector{T}[])
 YoungTableau() = YoungTableau{Int}()
 
 rows((; rows)::YoungTableau) = rows
-row(yt, i::Int) = rows(yt)[i]
+function row(yt, i::Int)
+    r = rows(yt)
+    return isassigned(r, i) ? r[i] : ()
+end
 nrows(yt) = length(rows(yt))
 ncols(yt) = isempty(rows(yt)) ? 0 : length(first(rows(yt)))
 ncols(yt, i::Int) = length(row(yt, i))

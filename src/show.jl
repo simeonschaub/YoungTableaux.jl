@@ -1,7 +1,9 @@
 using UUIDs
 
 _show_entry(io::IO, yt, m) = print(IOContext(io, :typeinfo=>eltype(yt)), m)
+_show_entry(::IO, ::AbstractShape, ::Bool) = nothing
 _string_entry(yt) = m -> sprint(_show_entry, yt, m)
+
 function Base.show(io::IO, ::MIME"text/html", yt::AbstractYoungTableau)
     rows = YoungTableaux.rows(yt)
     class = get(io, :html_class, string("yt-", uuid1()))
@@ -11,7 +13,7 @@ function Base.show(io::IO, ::MIME"text/html", yt::AbstractYoungTableau)
         <style scoped>
             .$class {
                 border: 1pt solid;
-                width: $(100 / (isempty(rows) ? 100 : rowlength(yt)))%;
+                width: $(100 / (isempty(rows) ? 100 : ncols(yt)))%;
                 padding: 8px;
             }
             .$class div {
@@ -46,25 +48,25 @@ function visualize_insert(yt, x, x_row; to_replace=nothing, delete=false)
     maxlen = max(maximum(textwidth∘_string_entry(yt), yt; init=0), textwidth(_string_entry(yt)(x)))
     template = join((
         "\"$(join(
-                  [fill(i > nrows(yt) ? "." : "yt", rowlength(yt)); "."; i == x_row ? "x" : ". "],
+                  [fill(i > nrows(yt) ? "." : "yt", ncols(yt)); "."; i == x_row ? "x" : ". "],
                   " ",
                  ))\"" for i in 1:nrows(yt)+1),
         "\n",
     )
-    translate_x = rowlength(yt) - to_replace[2] + 2
+    translate_x = ncols(yt) - to_replace[2] + 2
     @htl """
     <style>
     @keyframes $replace {
       from {}
       to {
-        transform: translateX(calc($(-100*translate_x)% - $(rowlength(yt)/5 - 1)pt));
+        transform: translateX(calc($(-100*translate_x)% - $(ncols(yt)/5 - 1)pt));
       }
     }
     @keyframes $pop {
       0% {}
       50% {transform: translateY(-100%); outline: 1pt solid;}
       100% {
-        transform: translateY(100%) translateX($(100*(rowlength(yt) - to_replace[2] + 2))%);
+        transform: translateY(100%) translateX($(100*(ncols(yt) - to_replace[2] + 2))%);
       }
     }
 

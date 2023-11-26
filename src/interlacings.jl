@@ -1,12 +1,3 @@
-struct Partition <: AbstractYoungTableau{Bool}
-    parts::Vector{Int}
-end
-Partition(p::Partition) = p
-Partition(yt::AbstractYoungTableau) = Partition(map(length, rows(yt)))
-
-rows((; parts)::Partition) = ((true for _ in 1:p) for p in parts)
-_show_entry(::IO, ::Partition, b::Bool) = @assert b
-
 abstract type AbstractInterlacing end
 let ops = [:≺, :≻, :≺′, :≻′]
     types = Symbol.(:_, ops)

@@ -4,6 +4,8 @@ export YoungTableau, schensted_insert!, rs_norecord, rs_pair, rsk_pair, Partitio
     row, rows, nrows, ncols, shape
 export ≺, ≻, ≺′, ≻′
 
+using MappedArrays
+
 abstract type AbstractDiagram{T} end
 abstract type AbstractYoungTableau{T} <: AbstractDiagram{T} end
 
@@ -11,7 +13,6 @@ struct YoungTableau{T} <: AbstractYoungTableau{T}
     rows::Vector{Vector{T}}
 end
 YoungTableau{T}() where {T} = YoungTableau(Vector{T}[])
-YoungTableau() = YoungTableau{Int}()
 
 rows((; rows)::YoungTableau) = rows
 function row(yt, i::Int)
@@ -31,7 +32,9 @@ function Base.getindex(yt::AbstractDiagram{T}, i::Int, j::Int) where {T}
     return get(row, j, zero(T))
 end
 Base.getindex(yt::AbstractDiagram, I::CartesianIndex{2}) = yt[Tuple(I)...]
-Base.getindex(x::AbstractArray, yt::AbstractDiagram) = getindex.(Ref(x), yt)
+Base.getindex(x::AbstractArray, y::AbstractDiagram) = getindex.(Ref(x), y)
+Base.getindex(x::AbstractDiagram, y::AbstractDiagram) = getindex.(Ref(x), y)
+Base.getindex(x::AbstractDiagram, y::AbstractArray) = getindex.(Ref(x), y)
 
 Base.IteratorSize(::AbstractDiagram) = Base.SizeUnknown()
 Base.eltype(::AbstractDiagram{T}) where {T} = T
@@ -42,7 +45,7 @@ function Base.:(==)(d1::AbstractDiagram, d2::AbstractDiagram)
     length(r1) == length(r2) || return false
     for (row1, row2) in zip(r1, r2)
         length(row1) == length(row2) || return false
-        all(Base.splat(==), zip(row1, row2)) || return false
+        row1 == row2 || return false
     end
     return true
 end
@@ -66,13 +69,20 @@ end
 Partition(p::Partition) = p
 Partition(yt::AbstractYoungTableau) = Partition(map(length, rows(yt)))
 
-rows((; parts)::Partition) = ((true for _ in 1:p) for p in parts)
+ncols((; parts)::Partition) = isempty(parts) ? 0 : first(parts)
+ncols((; parts)::Partition, i::Int) = isassigned(parts, i) ? parts[i] : 0
+nrows((; parts)::Partition) = length(parts)
+rows((; parts)::Partition) = mappedarray(p -> mappedarray(Returns(true), 1:p), parts)
 
 struct PartitionOf{D <: AbstractDiagram} <: AbstractPartition
     diagram::D
 end
 
-rows((; diagram)::PartitionOf) = ((true for _ in r) for r in rows(diagram))
+ncols((; diagram)::PartitionOf) = ncols(diagram)
+ncols((; diagram)::PartitionOf, i::Int) = ncols(diagram, i)
+nrows((; diagram)::PartitionOf) = nrows(diagram)
+rows((; diagram)::PartitionOf) = mappedarray(r -> mappedarray(Returns(true), r), rows(diagram))
+
 shape(p::AbstractPartition) = p
 shape(d::AbstractDiagram) = PartitionOf(d)
 
@@ -82,9 +92,9 @@ end
 
 function rows((; diagram)::EachIndexOf)
     rs = rows(diagram)
-    return (let r = rs[i]
-        (CartesianIndex(i, j) for j in LinearIndices(r))
-    end for i in LinearIndices(rs))
+    return mappedarray(LinearIndices(rs)) do i
+        mappedarray(j -> CartesianIndex(i, j), LinearIndices(rs[i]))
+    end
 end
 Base.eachindex(d::AbstractDiagram) = EachIndexOf(d)
 

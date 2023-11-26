@@ -2,9 +2,10 @@ using UUIDs
 
 _show_entry(io::IO, yt, m) = print(IOContext(io, :typeinfo=>eltype(yt)), m)
 _show_entry(::IO, ::AbstractShape, ::Bool) = nothing
+_show_entry(io::IO, ::EachIndexOf, I::CartesianIndex{2}) = print(io, I[1], ",", I[2])
 _string_entry(yt) = m -> sprint(_show_entry, yt, m)
 
-function Base.show(io::IO, ::MIME"text/html", yt::AbstractYoungTableau)
+function Base.show(io::IO, ::MIME"text/html", yt::AbstractDiagram)
     rows = YoungTableaux.rows(yt)
     class = get(io, :html_class, string("yt-", uuid1()))
     maxlen = get(io, :html_maxlen, maximum(textwidth∘_string_entry(yt), yt; init=0))

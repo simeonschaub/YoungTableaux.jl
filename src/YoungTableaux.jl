@@ -1,7 +1,7 @@
 module YoungTableaux
 
 export YoungTableau, schensted_insert!, rs_norecord, rs_pair, rsk_pair, Partition,
-    row, rows, nrows, ncols, shape
+    SkewPartition, row, rows, nrows, ncols, shape
 export ≺, ≻, ≺′, ≻′
 
 using MappedArrays
@@ -138,6 +138,23 @@ function rows((; diagram)::EachIndexOf)
     end
 end
 Base.eachindex(d::AbstractDiagram) = EachIndexOf(d)
+
+struct SkewPartition <: AbstractShape
+    diffs::Vector{UnitRange{Int}}
+end
+
+function rows((; diffs)::SkewPartition)
+    return mappedarray(diffs) do r
+        mappedarray(>=(first(r)), 1:last(r))
+    end
+end
+function Base.:(-)(p1::AbstractPartition, p2::AbstractPartition)
+    n = max(nrows(p1), nrows(p2))
+    diffs = map(1:n) do i
+        ncols(p2, i) + 1 : ncols(p1, i)
+    end
+    return SkewPartition(diffs)
+end
 
 include("show.jl")
 include("broadcast.jl")

@@ -23,3 +23,24 @@ using Test, TestItems, TestItemRunner
 
     @test occursin("<table", repr("text/html", P))
 end
+
+
+@testitem "broadcasting" begin
+    π = [4, 6, 3, 8, 1, 2, 7, 5]
+    P, Q = YoungTableaux.rs_pair(π)
+    P′, Q′ = YoungTableau{Int64}([[1, 2, 5], [3, 6, 7], [4, 8]]), YoungTableau{Int64}([[1, 2, 4], [3, 6, 7], [5, 8]])
+
+    @test P .+ 1 == YoungTableau{Int64}([[2, 3, 6], [4, 7, 8], [5, 9]])
+    @test 1 .* P .+ 0 == P′
+
+    P_mat = zeros(3, 3) .+ P
+    @test P_mat == [1 2 5; 3 6 7; 4 8 0]
+
+    P′′ = copy(P)
+    P′′ .= 0
+    @test all(iszero, P′′)
+    P′′ .= P
+    @test P′′ == P′
+    P′′ .+= P
+    @test P′′ == 2 .* P′
+end

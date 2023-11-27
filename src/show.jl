@@ -3,7 +3,8 @@ using UUIDs
 Base.summary(io::IO, d::AbstractDiagram) = Base.array_summary(io, d, axes(d))
 
 _show_entry(io::IO, yt, m) = print(IOContext(io, :typeinfo=>eltype(yt)), m)
-_show_entry(::IO, ::AbstractShape, ::Bool) = nothing
+_show_entry(::IO, ::AbstractPartition, ::Bool) = nothing
+_show_entry(io::IO, ::AbstractShape, b::Bool) = (b && print(io, '*'); nothing)
 _show_entry(io::IO, ::EachIndexOf, I::CartesianIndex{2}) = print(io, I[1], ",", I[2])
 _string_entry(yt) = m -> sprint(_show_entry, yt, m)
 
@@ -43,17 +44,19 @@ function Base.show(io::IO, ::MIME"text/plain", yt::AbstractDiagram)
 
         isempty(itr) && break
         row′ = popfirst!(itr)
-        l, c, r, nextlen = '├', '┼', '┤', length(something(peek(itr), 0))
+        l, c, r, nextlen = '├', '┼', '┤', length(row′)
 
         print(io, l)
         for i in 1:length(row)
             _fill(io, maxlen, '─')
-            if i > something(nextlen, typemax(Int))
+            if i > nextlen
                 c, r, nextlen = '┴', '┘', typemax(Int)
-                print(io, i == length(row) ? '┤' : '┼')
-            else
-                print(io, i == length(row) ? r : c)
+                if nextlen == length(row)
+                    print(io, i == length(row) ? '┤' : '┼')
+                    continue
+                end
             end
+            print(io, i == length(row) ? r : c)
         end
         row = row′
     end

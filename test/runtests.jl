@@ -21,6 +21,7 @@ using Test, TestItems, TestItemRunner
 
     @test eachindex(P) == eachindex(shape(P′))
 
+    @test occursin("┼", repr("text/plain", P))
     @test occursin("<table", repr("text/html", P))
 end
 

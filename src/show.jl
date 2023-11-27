@@ -1,9 +1,69 @@
 using UUIDs
 
+Base.summary(io::IO, d::AbstractDiagram) = Base.array_summary(io, d, axes(d))
+
 _show_entry(io::IO, yt, m) = print(IOContext(io, :typeinfo=>eltype(yt)), m)
 _show_entry(::IO, ::AbstractShape, ::Bool) = nothing
 _show_entry(io::IO, ::EachIndexOf, I::CartesianIndex{2}) = print(io, I[1], ",", I[2])
 _string_entry(yt) = m -> sprint(_show_entry, yt, m)
+
+_fill(io::IO, n::Int, c) = foreach(_ -> print(io, c), 1:n)
+function mpad(io::IO, s::AbstractString, n::Int)
+    w = textwidth(s)
+    m = (n - w) ÷ 2
+    _fill(io, m, ' ')
+    print(io, s)
+    _fill(io, n-w-m, ' ')
+end
+
+function Base.show(io::IO, ::MIME"text/plain", yt::AbstractDiagram)
+    rows = YoungTableaux.rows(yt)
+    maxlen = get(io, :html_maxlen, maximum(textwidth∘_string_entry(yt), yt; init=1)) + 2
+    itr = Iterators.Stateful(rows)
+
+    summary(io, yt)
+    isempty(itr) && return
+    println(io)
+
+    row = popfirst!(itr)
+    print(io, '┌')
+    for i in 1:length(row)
+        _fill(io, maxlen, '─')
+        print(io, i == length(row) ? '┐' : '┬')
+    end
+
+    while true
+        println(io)
+        print(io, '│')
+        for m in row
+            mpad(io, _string_entry(yt)(m), maxlen)
+            print(io, '│')
+        end
+        println(io)
+
+        isempty(itr) && break
+        row′ = popfirst!(itr)
+        l, c, r, nextlen = '├', '┼', '┤', length(something(peek(itr), 0))
+
+        print(io, l)
+        for i in 1:length(row)
+            _fill(io, maxlen, '─')
+            if i > something(nextlen, typemax(Int))
+                c, r, nextlen = '┴', '┘', typemax(Int)
+                print(io, i == length(row) ? '┤' : '┼')
+            else
+                print(io, i == length(row) ? r : c)
+            end
+        end
+        row = row′
+    end
+
+    print(io, '└')
+    for i in 1:length(row)
+        _fill(io, maxlen, '─')
+        print(io, i == length(row) ? '┘' : '┴')
+    end
+end
 
 function Base.show(io::IO, ::MIME"text/html", yt::AbstractDiagram)
     rows = YoungTableaux.rows(yt)

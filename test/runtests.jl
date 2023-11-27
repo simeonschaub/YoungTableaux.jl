@@ -1,6 +1,7 @@
 using YoungTableaux
-using Test, TestItems
+using Test, TestItems, TestItemRunner
 
+@run_package_tests verbose=true
 
 @testitem "basic functionality" begin
     π = [4, 6, 3, 8, 1, 2, 7, 5]

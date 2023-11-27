@@ -67,7 +67,6 @@ function Base.:(==)(d1::AbstractDiagram, d2::AbstractDiagram)
     r1, r2 = rows(d1), rows(d2)
     length(r1) == length(r2) || return false
     for (row1, row2) in zip(r1, r2)
-        length(row1) == length(row2) || return false
         row1 == row2 || return false
     end
     return true
@@ -75,8 +74,7 @@ end
 function Base.hash(d::AbstractDiagram, seed::UInt)
     h = hash(0x038ae58442cb843d % UInt, seed)
     for r in rows(d)
-        h = hash(h, length(r) ⊻ (0x4f55546eb633569d % UInt))
-        h = foldr(hash, r; init=h)
+        h = hash(r, h)
     end
     return h
 end

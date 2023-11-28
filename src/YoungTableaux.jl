@@ -215,14 +215,27 @@ end
 cols(::ColumnMajor, (; diagram)::ConjugateDiagram) = rows(diagram)
 rows(::RowMajor, (; diagram)::ConjugateDiagram) = cols(diagram)
 
+function _divide_range(range::UnitRange{Int})
+    a, b = first(range), last(range)
+    m = a + (b - a) ÷ 2
+    return a:m, m+1:b
+end
+
+function _bisect_max(f, range::UnitRange{Int}; cutoff::Val{c}=Val(16)) where {c}
+    length(range) <= c && return findlast(f, range)
+    a, b = _divide_range(range)
+    res_b = _bisect_max(f, b; cutoff)
+    return res_b === nothing ? _bisect_max(f, a; cutoff) : res_b
+end
+
 function rows(::ColumnMajor, (; diagram)::ConjugateDiagram)
     rows = YoungTableaux.rows(diagram)
-    last_row = Ref(nrows(diagram))
+    nrows = YoungTableaux.nrows(diagram)
     return mappedarray(1:ncols(diagram)) do j
-        last_row[] = findlast(1:last_row[]) do i
+        last_row = _bisect_max(1:nrows) do i
             isassigned(rows[i], j)
         end
-        return mappedarray(i -> diagram[i, j], 1:last_row[])
+        return mappedarray(i -> diagram[i, j], 1:last_row)
     end
 end
 

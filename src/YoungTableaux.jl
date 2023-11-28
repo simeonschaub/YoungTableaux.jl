@@ -156,6 +156,14 @@ function Base.:(-)(p1::AbstractPartition, p2::AbstractPartition)
     return SkewPartition(diffs)
 end
 
+function Base.:(+)(p1::AbstractPartition, p2::AbstractPartition)
+    n = max(nrows(p1), nrows(p2))
+    parts = map(1:n) do i
+        ncols(p1, i) + ncols(p2, i)
+    end
+    return Partition(parts)
+end
+
 include("show.jl")
 include("broadcast.jl")
 include("rsk.jl")

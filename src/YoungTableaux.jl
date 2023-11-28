@@ -249,6 +249,14 @@ Base.adjoint((; diagram)::ConjugateDiagram) = diagram
 YoungTableau(c::ConjugateDiagram) = YoungTableau(Vector.(rows(c)))
 Base.conj(d::AbstractDiagram) = YoungTableau(d')
 
+function getindex(::ColumnMajor, yt::AbstractDiagram{T}, i::Int, j::Int) where {T}
+    r = cols(yt)
+    isassigned(r, j) || throw(BoundsError(yt, (i, j)))
+    isassigned(first(r), i) || throw(BoundsError(yt, (i, j)))
+    row = r[j]
+    return get(row, i, zero(T))
+end
+
 include("show.jl")
 include("broadcast.jl")
 include("rsk.jl")

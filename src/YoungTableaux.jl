@@ -246,6 +246,9 @@ nrows(t::AccessTrait, (; diagram)::ConjugateDiagram, i::Int) = ncols(inv(t), dia
 Base.adjoint(d::AbstractDiagram) = ConjugateDiagram(d)
 Base.adjoint((; diagram)::ConjugateDiagram) = diagram
 
+YoungTableau(c::ConjugateDiagram) = YoungTableau(Vector.(rows(c)))
+Base.conj(d::AbstractDiagram) = YoungTableau(d')
+
 include("show.jl")
 include("broadcast.jl")
 include("rsk.jl")

@@ -45,3 +45,9 @@ end
     P′′ .+= P
     @test P′′ == 2 .* P′
 end
+
+
+@testitem "doctests" begin
+    using Documenter: doctest
+    doctest(YoungTableaux)
+end

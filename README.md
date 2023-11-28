@@ -9,7 +9,7 @@ See the demo [here](https://simeonschaub.github.io/YoungTableaux.jl/notebooks/no
 
 Young Tableaux can be constructed as follows:
 
-```jldoctest
+```julia
 julia> using YoungTableaux
 
 julia> YoungTableau([[1, 3, 4], [2, 5], [6]])
@@ -25,7 +25,7 @@ julia> YoungTableau([[1, 3, 4], [2, 5], [6]])
 
 Alternatively they can also be constructed from a permutation:
 
-```jldoctest
+```julia
 julia> π = [4, 6, 3, 8, 1, 2, 7, 5]
 8-element Vector{Int64}:
  4
@@ -63,7 +63,7 @@ julia> Q
 
 Broadcasting works just like with arrays!
 
-```jldoctest
+```julia
 julia> P .+ Q
 3×3 YoungTableau{Int64}
 ┌────┬────┬────┐
@@ -79,7 +79,7 @@ Partitions are just like Young Tableaux, but without entries. When iterating a
 partition only `true` is returned. Indices of the square can be computed using
 `eachindex`.
 
-```jldoctest
+```julia
 julia> Partition([3, 3, 2])
 3×3 Partition
 ┌───┬───┬───┐
@@ -104,9 +104,9 @@ julia> eachindex(Partition([3, 3, 2]))
 The partition corresponding to a Young Tableaux can be requested using
 `shape`, which will return a lazy wrapper:
 
-```jldoctest
+```julia
 julia> shape(P)
-3×3 PartitionOf{YoungTableau{Int64}}
+3×3 YoungTableaux.PartitionOf{YoungTableau{Int64}}
 ┌───┬───┬───┐
 │   │   │   │
 ├───┼───┼───┤
@@ -119,7 +119,7 @@ julia> shape(P)
 Addition and substraction work as defined in Macdonald: "Symmetric Functions
 and Hall Polynomials"
 
-```jldoctest
+```julia
 julia> shape(P) - Partition([2, 1])
 3×3 SkewPartition
 ┌───┬───┬───┐

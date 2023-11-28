@@ -36,6 +36,11 @@ struct ColumnMajor end
 const AccessTrait = Union{RowMajor, ColumnMajor}
 (::Type{AccessTrait})(::AbstractDiagram) = RowMajor()
 
+Base.inv(::RowMajor) = ColumnMajor()
+Base.inv(::ColumnMajor) = RowMajor()
+rows_or_cols(::RowMajor, d) = rows(d)
+rows_or_cols(::ColumnMajor, d) = cols(d)
+
 """
     YoungTableau{T}(rows::Vector{Vector{T}})
 
@@ -54,7 +59,10 @@ Returns an array containing all rows of a diagram. Must be implemented by any su
 """
 function rows end
 
-rows((; rows)::YoungTableau) = rows
+rows(d::AbstractDiagram) = rows(AccessTrait(d), d)
+cols(d::AbstractDiagram) = cols(AccessTrait(d), d)
+
+rows(::RowMajor, (; rows)::YoungTableau) = rows
 function row(yt, i::Int)
     r = rows(yt)
     return isassigned(r, i) ? r[i] : ()
@@ -87,7 +95,7 @@ Base.getindex(x::AbstractDiagram, y::AbstractArray) = Base.getindex.(Ref(x), y)
 Base.IteratorSize(::AbstractDiagram) = Base.SizeUnknown()
 Base.eltype(::AbstractDiagram{T}) where {T} = T
 Base.iterate(yt::AbstractDiagram, st...) = iterate(AccessTrait(yt), yt, st...)
-iterate(::RowMajor, yt::AbstractDiagram, st...) = Base.iterate(Iterators.flatten(rows(yt)), st...)
+iterate(::AccessTrait, yt::AbstractDiagram, st...) = Base.iterate(Iterators.flatten(rows(yt)), st...)
 
 function Base.:(==)(d1::AbstractDiagram, d2::AbstractDiagram)
     r1, r2 = rows(d1), rows(d2)
@@ -97,7 +105,8 @@ function Base.:(==)(d1::AbstractDiagram, d2::AbstractDiagram)
     end
     return true
 end
-function Base.hash(d::AbstractDiagram, seed::UInt)
+Base.hash(d::AbstractDiagram, seed::UInt) = hash(AccessTrait(d), d, seed)
+function hash(::RowMajor, d::AbstractDiagram, seed::UInt)
     h = hash(0x038ae58442cb843d % UInt, seed)
     for r in rows(d)
         h = hash(r, h)
@@ -134,16 +143,18 @@ Partition(yt::AbstractYoungTableau) = Partition(map(length, rows(yt)))
 ncols((; parts)::Partition) = isempty(parts) ? 0 : first(parts)
 ncols((; parts)::Partition, i::Int) = isassigned(parts, i) ? parts[i] : 0
 nrows((; parts)::Partition) = length(parts)
-rows((; parts)::Partition) = mappedarray(p -> mappedarray(Returns(true), 1:p), parts)
+rows(::RowMajor, (; parts)::Partition) = mappedarray(p -> mappedarray(Returns(true), 1:p), parts)
 
 struct PartitionOf{D <: AbstractDiagram} <: AbstractPartition
     diagram::D
 end
 
+(::Type{AccessTrait})((; diagram)::PartitionOf) = AccessTrait(diagram)
 ncols((; diagram)::PartitionOf) = ncols(diagram)
 ncols((; diagram)::PartitionOf, i::Int) = ncols(diagram, i)
 nrows((; diagram)::PartitionOf) = nrows(diagram)
-rows((; diagram)::PartitionOf) = mappedarray(r -> mappedarray(Returns(true), r), rows(diagram))
+rows(::RowMajor, (; diagram)::PartitionOf) = mappedarray(r -> mappedarray(Returns(true), r), rows(diagram))
+cols(::ColumnMajor, (; diagram)::PartitionOf) = mappedarray(r -> mappedarray(Returns(true), r), cols(diagram))
 
 """
     shape(d::AbstractDiagram)
@@ -157,10 +168,17 @@ struct EachIndexOf{D <: AbstractDiagram} <: AbstractYoungTableau{CartesianIndex{
     diagram::D
 end
 
-function rows((; diagram)::EachIndexOf)
+(::Type{AccessTrait})((; diagram)::EachIndexOf) = AccessTrait(diagram)
+function rows(::RowMajor, (; diagram)::EachIndexOf)
     rs = rows(diagram)
     return mappedarray(LinearIndices(rs)) do i
         mappedarray(j -> CartesianIndex(i, j), LinearIndices(rs[i]))
+    end
+end
+function cols(::RowMajor, (; diagram)::EachIndexOf)
+    rs = cols(diagram)
+    return mappedarray(LinearIndices(rs)) do j
+        mappedarray(i -> CartesianIndex(i, j), LinearIndices(rs[i]))
     end
 end
 Base.eachindex(d::AbstractDiagram) = EachIndexOf(d)
@@ -169,7 +187,7 @@ struct SkewPartition <: AbstractShape
     diffs::Vector{UnitRange{Int}}
 end
 
-function rows((; diffs)::SkewPartition)
+function rows(::RowMajor, (; diffs)::SkewPartition)
     return mappedarray(diffs) do r
         mappedarray(>=(first(r)), 1:last(r))
     end
@@ -189,6 +207,33 @@ function Base.:(+)(p1::AbstractPartition, p2::AbstractPartition)
     end
     return Partition(parts)
 end
+
+struct ConjugateDiagram{T, D <: AbstractDiagram{T}} <: AbstractDiagram{T}
+    diagram::D
+end
+
+(::Type{AccessTrait})((; diagram)::ConjugateDiagram) = inv(AccessTrait(diagram))
+cols(::ColumnMajor, (; diagram)::ConjugateDiagram) = rows(diagram)
+rows(::RowMajor, (; diagram)::ConjugateDiagram) = cols(diagram)
+
+function rows(::ColumnMajor, (; diagram)::ConjugateDiagram)
+    rows = YoungTableaux.rows(diagram)
+    last_row = Ref(nrows(diagram))
+    return mappedarray(1:ncols(diagram)) do j
+        last_row[] = findlast(1:last_row[]) do i
+            isassigned(rows[i], j)
+        end
+        return mappedarray(i -> diagram[i, j], 1:last_row[])
+    end
+end
+
+ncols(t::AccessTrait, (; diagram)::ConjugateDiagram) = nrows(inv(t), diagram)
+ncols(t::AccessTrait, (; diagram)::ConjugateDiagram, i::Int) = nrows(inv(t), diagram, i)
+nrows(t::AccessTrait, (; diagram)::ConjugateDiagram) = ncols(inv(t), diagram)
+nrows(t::AccessTrait, (; diagram)::ConjugateDiagram, i::Int) = ncols(inv(t), diagram, i)
+
+Base.adjoint(d::AbstractDiagram) = ConjugateDiagram(d)
+Base.adjoint((; diagram)::ConjugateDiagram) = diagram
 
 include("show.jl")
 include("broadcast.jl")

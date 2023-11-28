@@ -105,8 +105,7 @@ function Base.:(==)(d1::AbstractDiagram, d2::AbstractDiagram)
     end
     return true
 end
-Base.hash(d::AbstractDiagram, seed::UInt) = hash(AccessTrait(d), d, seed)
-function hash(::RowMajor, d::AbstractDiagram, seed::UInt)
+function Base.hash(d::AbstractDiagram, seed::UInt)
     h = hash(0x038ae58442cb843d % UInt, seed)
     for r in rows(d)
         h = hash(r, h)

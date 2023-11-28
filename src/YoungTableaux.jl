@@ -31,6 +31,11 @@ Supertype for any fully filled Young diagram
 """
 abstract type AbstractYoungTableau{T} <: AbstractDiagram{T} end
 
+struct RowMajor end
+struct ColumnMajor end
+const AccessTrait = Union{RowMajor, ColumnMajor}
+(::Type{AccessTrait})(::AbstractDiagram) = RowMajor()
+
 """
     YoungTableau{T}(rows::Vector{Vector{T}})
 
@@ -54,12 +59,20 @@ function row(yt, i::Int)
     r = rows(yt)
     return isassigned(r, i) ? r[i] : ()
 end
-nrows(yt) = length(rows(yt))
-ncols(yt) = isempty(rows(yt)) ? 0 : length(first(rows(yt)))
-ncols(yt, i::Int) = length(row(yt, i))
+
+nrows(yt) = nrows(AccessTrait(yt), yt)
+nrows(::RowMajor, yt) = length(rows(yt))
+
+
+ncols(yt) = ncols(AccessTrait(yt), yt)
+ncols(::RowMajor, yt) = isempty(rows(yt)) ? 0 : length(first(rows(yt)))
+
+ncols(yt, i::Int) = ncols(AccessTrait(yt), yt, i)
+ncols(::RowMajor, yt, i::Int) = length(row(yt, i))
 Base.size(yt::AbstractDiagram) = (nrows(yt), ncols(yt))
 
-function Base.getindex(yt::AbstractDiagram{T}, i::Int, j::Int) where {T}
+Base.getindex(yt::AbstractDiagram, i::Int, j::Int) = getindex(AccessTrait(yt), yt, i, j)
+function getindex(::RowMajor, yt::AbstractDiagram{T}, i::Int, j::Int) where {T}
     r = rows(yt)
     isassigned(r, i) || throw(BoundsError(yt, (i, j)))
     isassigned(first(r), j) || throw(BoundsError(yt, (i, j)))
@@ -67,13 +80,14 @@ function Base.getindex(yt::AbstractDiagram{T}, i::Int, j::Int) where {T}
     return get(row, j, zero(T))
 end
 Base.getindex(yt::AbstractDiagram, I::CartesianIndex{2}) = yt[Tuple(I)...]
-Base.getindex(x::AbstractArray, y::AbstractDiagram) = getindex.(Ref(x), y)
-Base.getindex(x::AbstractDiagram, y::AbstractDiagram) = getindex.(Ref(x), y)
-Base.getindex(x::AbstractDiagram, y::AbstractArray) = getindex.(Ref(x), y)
+Base.getindex(x::AbstractArray, y::AbstractDiagram) = Base.getindex.(Ref(x), y)
+Base.getindex(x::AbstractDiagram, y::AbstractDiagram) = Base.getindex.(Ref(x), y)
+Base.getindex(x::AbstractDiagram, y::AbstractArray) = Base.getindex.(Ref(x), y)
 
 Base.IteratorSize(::AbstractDiagram) = Base.SizeUnknown()
 Base.eltype(::AbstractDiagram{T}) where {T} = T
-Base.iterate(yt::AbstractDiagram, st...) = iterate(Iterators.flatten(rows(yt)), st...)
+Base.iterate(yt::AbstractDiagram, st...) = iterate(AccessTrait(yt), yt, st...)
+iterate(::RowMajor, yt::AbstractDiagram, st...) = Base.iterate(Iterators.flatten(rows(yt)), st...)
 
 function Base.:(==)(d1::AbstractDiagram, d2::AbstractDiagram)
     r1, r2 = rows(d1), rows(d2)

@@ -68,15 +68,32 @@ function row(yt, i::Int)
     return isassigned(r, i) ? r[i] : ()
 end
 
+function _divide_range(range::UnitRange{Int})
+    a, b = first(range), last(range)
+    m = a + (b - a) ÷ 2
+    return a:m, m+1:b
+end
+
+function _bisect_max(f, range::UnitRange{Int}; cutoff::Val{c}=Val(16)) where {c}
+    length(range) <= c && return findlast(f, range)
+    a, b = _divide_range(range)
+    res_b = _bisect_max(f, b; cutoff)
+    return res_b === nothing ? _bisect_max(f, a; cutoff) : res_b
+end
+
 nrows(yt) = nrows(AccessTrait(yt), yt)
 nrows(::RowMajor, yt) = length(rows(yt))
-
+nrows(yt, i::Int) = nrows(AccessTrait(yt), yt, i)
+function nrows(::RowMajor, yt, i::Int)
+    rows = YoungTableaux.rows(yt)
+    return something(_bisect_max(j -> isassigned(rows[j], i), 1:length(rows)), 0)
+end
 
 ncols(yt) = ncols(AccessTrait(yt), yt)
 ncols(::RowMajor, yt) = isempty(rows(yt)) ? 0 : length(first(rows(yt)))
-
 ncols(yt, i::Int) = ncols(AccessTrait(yt), yt, i)
 ncols(::RowMajor, yt, i::Int) = length(row(yt, i))
+
 Base.size(yt::AbstractDiagram) = (nrows(yt), ncols(yt))
 
 Base.getindex(yt::AbstractDiagram, i::Int, j::Int) = getindex(AccessTrait(yt), yt, i, j)
@@ -215,27 +232,9 @@ end
 cols(::ColumnMajor, (; diagram)::ConjugateDiagram) = rows(diagram)
 rows(::RowMajor, (; diagram)::ConjugateDiagram) = cols(diagram)
 
-function _divide_range(range::UnitRange{Int})
-    a, b = first(range), last(range)
-    m = a + (b - a) ÷ 2
-    return a:m, m+1:b
-end
-
-function _bisect_max(f, range::UnitRange{Int}; cutoff::Val{c}=Val(16)) where {c}
-    length(range) <= c && return findlast(f, range)
-    a, b = _divide_range(range)
-    res_b = _bisect_max(f, b; cutoff)
-    return res_b === nothing ? _bisect_max(f, a; cutoff) : res_b
-end
-
 function rows(::ColumnMajor, (; diagram)::ConjugateDiagram)
-    rows = YoungTableaux.rows(diagram)
-    nrows = YoungTableaux.nrows(diagram)
     return mappedarray(1:ncols(diagram)) do j
-        last_row = _bisect_max(1:nrows) do i
-            isassigned(rows[i], j)
-        end
-        return mappedarray(i -> diagram[i, j], 1:last_row)
+        return mappedarray(i -> diagram[i, j], 1:nrows(diagram, j))
     end
 end
 

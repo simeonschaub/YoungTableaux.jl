@@ -140,3 +140,19 @@ julia> shape(P) + Partition([2, 1])
 │   │   │
 └───┴───┘
 ```
+
+There is also initial support for conjugating diagrams using the adjoint
+operator like with regular matrices. It is currently implemented lazily
+but this may be subject to change.
+
+```julia
+julia> P'
+3×3 YoungTableaux.ConjugateDiagram{Int64, YoungTableau{Int64}}
+┌───┬───┬───┐
+│ 1 │ 3 │ 4 │
+├───┼───┼───┤
+│ 2 │ 6 │ 8 │
+├───┼───┼───┘
+│ 5 │ 7 │
+└───┴───┘
+```

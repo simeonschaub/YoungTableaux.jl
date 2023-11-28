@@ -12,9 +12,10 @@ _fill(io::IO, n::Int, c) = foreach(_ -> print(io, c), 1:n)
 function mpad(io::IO, s::AbstractString, n::Int)
     w = textwidth(s)
     m = (n - w) ÷ 2
-    _fill(io, m, ' ')
-    print(io, s)
+    # if uneven spaces to fill, pad left with one more space
     _fill(io, n-w-m, ' ')
+    print(io, s)
+    _fill(io, m, ' ')
 end
 
 function Base.show(io::IO, ::MIME"text/plain", yt::AbstractDiagram)

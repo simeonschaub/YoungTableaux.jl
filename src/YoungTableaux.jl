@@ -65,9 +65,8 @@ rows(d) = rows(AccessTrait(d), d)
 cols(d) = cols(AccessTrait(d), d)
 
 rows(::RowMajor, (; rows)::YoungTableau) = rows
-function row(yt, i::Int)
-    r = rows(yt)
-    return isassigned(r, i) ? r[i] : ()
+function row(yt, i::Int; rows=rows(yt))
+    return isassigned(rows, i) ? rows[i] : ()
 end
 
 function _divide_range(range::UnitRange{Int})

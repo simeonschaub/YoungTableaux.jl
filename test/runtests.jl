@@ -44,6 +44,8 @@ end
     @test P′′ == P′
     P′′ .+= P
     @test P′′ == 2 .* P′
+
+    @test P' .+ P == P .+ P'
 end
 
 

@@ -19,16 +19,16 @@ function rows(bc::Broadcasted{DiagramStyle})
     return (row(bc, i) for i in axes(bc)[1])
 end
 function Base.similar(bc::Broadcasted{DiagramStyle}, ::Type{T}, dims::NTuple{2,Base.OneTo}) where {T}
-    return YoungTableau{T}([Vector{T}(undef, size(r)...) for r in rows(bc)])
+    return YoungTableau{T}([Vector{T}(undef, size(r)...) for r in rows_monotonic(bc)])
 end
 function Base.copyto!(yt::AbstractDiagram, bc::Broadcasted{DiagramStyle})
-    for (dest, src) in zip(rows(yt), rows(bc))
+    for (dest, src) in zip(rows_monotonic(yt), rows_monotonic(bc))
         copyto!(dest, src)
     end
     return yt
 end
 function Base.copyto!(yt::AbstractDiagram, bc::Broadcasted{Broadcast.DefaultArrayStyle{0}})
-    for dest in rows(yt)
+    for dest in rows_monotonic(yt)
         copyto!(dest, bc)
     end
     return yt

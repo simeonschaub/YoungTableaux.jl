@@ -31,15 +31,17 @@ Supertype for any fully filled Young diagram
 """
 abstract type AbstractYoungTableau{T} <: AbstractDiagram{T} end
 
-struct RowMajor end
-struct ColumnMajor end
+struct RowMajor{monotonic} end
+RowMajor() = RowMajor{false}()
+struct ColumnMajor{monotonic} end
+ColumnMajor() = ColumnMajor{false}()
 const AccessTrait = Union{RowMajor, ColumnMajor}
 (::Type{AccessTrait})(::AbstractDiagram) = RowMajor()
 
-Base.inv(::RowMajor) = ColumnMajor()
-Base.inv(::ColumnMajor) = RowMajor()
-rows_or_cols(::RowMajor, d) = rows(d)
-rows_or_cols(::ColumnMajor, d) = cols(d)
+Base.inv(::RowMajor{monotonic}) where {monotonic} = ColumnMajor{monotonic}()
+Base.inv(::ColumnMajor{monotonic}) where {monotonic} = RowMajor{monotonic}()
+monotonic(::RowMajor) = RowMajor{true}()
+monotonic(::ColumnMajor) = ColumnMajor{true}()
 
 """
     YoungTableau{T}(rows::Vector{Vector{T}})
@@ -114,8 +116,9 @@ Base.eltype(::AbstractDiagram{T}) where {T} = T
 Base.iterate(yt::AbstractDiagram, st...) = iterate(AccessTrait(yt), yt, st...)
 iterate(::AccessTrait, yt::AbstractDiagram, st...) = Base.iterate(Iterators.flatten(rows(yt)), st...)
 
+rows_monotonic(d::AbstractDiagram) = rows(monotonic(AccessTrait(d)), d)
 function Base.:(==)(d1::AbstractDiagram, d2::AbstractDiagram)
-    r1, r2 = rows(d1), rows(d2)
+    r1, r2 = rows_monotonic(d1), rows_monotonic(d2)
     length(r1) == length(r2) || return false
     for (row1, row2) in zip(r1, r2)
         row1 == row2 || return false
@@ -124,7 +127,7 @@ function Base.:(==)(d1::AbstractDiagram, d2::AbstractDiagram)
 end
 function Base.hash(d::AbstractDiagram, seed::UInt)
     h = hash(0x038ae58442cb843d % UInt, seed)
-    for r in rows(d)
+    for r in rows_monotonic(d)
         h = hash(r, h)
     end
     return h
@@ -191,7 +194,7 @@ function rows(::RowMajor, (; diagram)::EachIndexOf)
         mappedarray(j -> CartesianIndex(i, j), LinearIndices(rs[i]))
     end
 end
-function cols(::RowMajor, (; diagram)::EachIndexOf)
+function cols(::ColumnMajor, (; diagram)::EachIndexOf)
     rs = cols(diagram)
     return mappedarray(LinearIndices(rs)) do j
         mappedarray(i -> CartesianIndex(i, j), LinearIndices(rs[i]))
@@ -235,6 +238,18 @@ rows(::RowMajor, (; diagram)::ConjugateDiagram) = cols(diagram)
 function rows(::ColumnMajor, (; diagram)::ConjugateDiagram)
     return mappedarray(1:ncols(diagram)) do j
         return mappedarray(i -> diagram[i, j], 1:nrows(diagram, j))
+    end
+end
+# mutating and not thread safe, but should be O(n) instead of O(n log(n))
+# only works if rows are accessed monotonically
+function rows(::ColumnMajor{true}, (; diagram)::ConjugateDiagram)
+    rows = YoungTableaux.rows(diagram)
+    last_row = Ref(nrows(diagram))
+    return mappedarray(1:ncols(diagram)) do j
+        last_row[] = findlast(1:last_row[]) do i
+            isassigned(rows[i], j)
+        end
+        return mappedarray(i -> diagram[i, j], 1:last_row[])
     end
 end
 

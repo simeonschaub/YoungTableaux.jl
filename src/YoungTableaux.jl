@@ -116,7 +116,7 @@ Base.eltype(::AbstractDiagram{T}) where {T} = T
 Base.iterate(yt::AbstractDiagram, st...) = iterate(AccessTrait(yt), yt, st...)
 iterate(::AccessTrait, yt::AbstractDiagram, st...) = Base.iterate(Iterators.flatten(rows(yt)), st...)
 
-rows_monotonic(d::AbstractDiagram) = rows(monotonic(AccessTrait(d)), d)
+rows_monotonic(d) = rows(monotonic(AccessTrait(d)), d)
 function Base.:(==)(d1::AbstractDiagram, d2::AbstractDiagram)
     r1, r2 = rows_monotonic(d1), rows_monotonic(d2)
     length(r1) == length(r2) || return false

@@ -7,14 +7,15 @@ Broadcast.BroadcastStyle(::DiagramStyle, ::Broadcast.DefaultMatrixStyle) = Defau
 
 Base.broadcastable(yt::AbstractDiagram) = yt
 
+(::Type{AccessTrait})(::Broadcasted{DiagramStyle}) = RowMajor()
 function _row((; f, args, axes)::Broadcasted{DiagramStyle}, i)
     args′ = map(args) do arg
         arg isa AbstractDiagram ? row(arg, i) : arg
     end
     return Broadcasted(f, args′)
 end
-row(bc::Broadcasted{DiagramStyle}, i::Int) = _row(Broadcast.flatten(bc), i)
-function rows(bc::Broadcasted{DiagramStyle})
+row(::AccessTrait, bc::Broadcasted{DiagramStyle}, i::Int) = _row(Broadcast.flatten(bc), i)
+function rows(::AccessTrait, bc::Broadcasted{DiagramStyle})
     bc = Broadcast.flatten(bc)
     return (row(bc, i) for i in axes(bc)[1])
 end

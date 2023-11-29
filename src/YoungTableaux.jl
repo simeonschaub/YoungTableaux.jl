@@ -61,8 +61,8 @@ Returns an array containing all rows of a diagram. Must be implemented by any su
 """
 function rows end
 
-rows(d::AbstractDiagram) = rows(AccessTrait(d), d)
-cols(d::AbstractDiagram) = cols(AccessTrait(d), d)
+rows(d) = rows(AccessTrait(d), d)
+cols(d) = cols(AccessTrait(d), d)
 
 rows(::RowMajor, (; rows)::YoungTableau) = rows
 function row(yt, i::Int)

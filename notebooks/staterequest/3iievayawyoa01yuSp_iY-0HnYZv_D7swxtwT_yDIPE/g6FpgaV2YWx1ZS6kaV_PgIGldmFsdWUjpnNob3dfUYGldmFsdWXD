@@ -1,0 +1,360 @@
+‚§patches›ƒ¥value¢op§replace¤path“¬cell_resultsÙ$9bc40166-338b-4060-bb76-16e30e3f7086¤logsƒ¥valueÚ"<br>
+<div style="display: flex">
+<style>
+@keyframes replace-a410ab70-8f55-11ee-277f-1383cc76146c {
+  from {}
+  to {
+    transform: translateX(calc(-400% - 0.19999999999999996pt));
+  }
+}
+@keyframes pop-a410ab7a-8f55-11ee-1e22-919589141d8c {
+  0% {}
+  50% {transform: translateY(-100%); outline: 1pt solid;}
+  100% {
+    transform: translateY(100%) translateX(400%);
+  }
+}
+
+.vis-container-a410ab52-8f55-11ee-2b0f-8fb1110b26db {
+	display: grid;
+    grid-auto-columns: 1fr;
+	width: fit-content;
+	height: fit-content;
+	margin: auto;
+	margin-block-end: var(--pluto-cell-spacing);
+	margin-block-start: var(--pluto-cell-spacing);
+    grid-template: "yt yt yt yt yt yt . . "
+"yt yt yt yt yt yt . x"
+"yt yt yt yt yt yt . . "
+"yt yt yt yt yt yt . . "
+"yt yt yt yt yt yt . . "
+"yt yt yt yt yt yt . . "
+". . . . . . . . ";
+}
+
+.vis-container-a410ab52-8f55-11ee-2b0f-8fb1110b26db #yt {
+	grid-area: yt;
+}
+.vis-container-a410ab52-8f55-11ee-2b0f-8fb1110b26db #yt table {
+	margin: 0;
+    width: 100%;
+}
+.vis-container-a410ab52-8f55-11ee-2b0f-8fb1110b26db #x {
+    grid-area: x;
+    background-color: green;
+    animation-name: replace-a410ab70-8f55-11ee-277f-1383cc76146c;
+animation-duration: 1s;
+animation-fill-mode: forwards;
+
+    /**/
+}
+.vis-container-a410ab52-8f55-11ee-2b0f-8fb1110b26db #c2-4.yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1 {
+    background-color: darkred;
+    animation-name: pop-a410ab7a-8f55-11ee-1e22-919589141d8c;
+animation-duration: 2s;
+animation-fill-mode: forwards;
+
+}
+
+</style>
+<div class='vis-container-a410ab52-8f55-11ee-2b0f-8fb1110b26db'>
+<div id=yt><table style='border: none'>
+<style scoped>
+    .yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1 {
+        border: 1pt solid;
+        width: 16.666666666666668%;
+        padding: 8px;
+    }
+    .yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1 div {
+        font-size: large;
+        aspect-ratio: 1;
+        min-width: max(2ch, 1em);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<tr><td id=c1-1 class=yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1><div><span>1</span></div></td><td id=c1-2 class=yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1><div><span>3</span></div></td><td id=c1-3 class=yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1><div><span>6</span></div></td><td id=c1-4 class=yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1><div><span>8</span></div></td><td id=c1-5 class=yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1><div><span>10</span></div></td><td id=c1-6 class=yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1><div><span>11</span></div></td></tr><tr><td id=c2-1 class=yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1><div><span>4</span></div></td><td id=c2-2 class=yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1><div><span>9</span></div></td><td id=c2-3 class=yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1><div><span>13</span></div></td></tr><tr><td id=c3-1 class=yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1><div><span>5</span></div></td><td id=c3-2 class=yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1><div><span>12</span></div></td></tr><tr><td id=c4-1 class=yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1><div><span>7</span></div></td></tr><tr><td id=c5-1 class=yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1><div><span>14</span></div></td></tr><tr><td id=c6-1 class=yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1><div><span>15</span></div></td></tr></table></div>
+<div id=x class='yt-a410ab68-8f55-11ee-0d3a-7928ce260fc1' style="font-family: var(--julia-mono-font-stack); width: auto"><div><span>16</span></div></div>
+</div>
+
+<style>
+@keyframes replace-a410ad3c-8f55-11ee-0c22-4141a37c6aae {
+  from {}
+  to {
+    transform: translateX(calc(-400% - 0.19999999999999996pt));
+  }
+}
+@keyframes pop-a410ad46-8f55-11ee-1b93-eb571992ae90 {
+  0% {}
+  50% {transform: translateY(-100%); outline: 1pt solid;}
+  100% {
+    transform: translateY(100%) translateX(400%);
+  }
+}
+
+.vis-container-a410ad28-8f55-11ee-0834-f99fc8cfe976 {
+	display: grid;
+    grid-auto-columns: 1fr;
+	width: fit-content;
+	height: fit-content;
+	margin: auto;
+	margin-block-end: var(--pluto-cell-spacing);
+	margin-block-start: var(--pluto-cell-spacing);
+    grid-template: "yt yt yt yt yt yt . . "
+"yt yt yt yt yt yt . x"
+"yt yt yt yt yt yt . . "
+"yt yt yt yt yt yt . . "
+"yt yt yt yt yt yt . . "
+"yt yt yt yt yt yt . . "
+". . . . . . . . ";
+}
+
+.vis-container-a410ad28-8f55-11ee-0834-f99fc8cfe976 #yt {
+	grid-area: yt;
+}
+.vis-container-a410ad28-8f55-11ee-0834-f99fc8cfe976 #yt table {
+	margin: 0;
+    width: 100%;
+}
+.vis-container-a410ad28-8f55-11ee-0834-f99fc8cfe976 #x {
+    grid-area: x;
+    background-color: green;
+    animation-name: replace-a410ad3c-8f55-11ee-0c22-4141a37c6aae;
+animation-duration: 1s;
+animation-fill-mode: forwards;
+
+    /**/
+}
+.vis-container-a410ad28-8f55-11ee-0834-f99fc8cfe976 #c2-4.yt-a410ad34-8f55-11ee-2db3-f776153b682b {
+    background-color: darkred;
+    animation-name: pop-a410ad46-8f55-11ee-1b93-eb571992ae90;
+animation-duration: 2s;
+animation-fill-mode: forwards;
+
+}
+
+</style>
+<div class='vis-container-a410ad28-8f55-11ee-0834-f99fc8cfe976'>
+<div id=yt><table style='border: none'>
+<style scoped>
+    .yt-a410ad34-8f55-11ee-2db3-f776153b682b {
+        border: 1pt solid;
+        width: 16.666666666666668%;
+        padding: 8px;
+    }
+    .yt-a410ad34-8f55-11ee-2db3-f776153b682b div {
+        font-size: large;
+        aspect-ratio: 1;
+        min-width: max(2ch, 1em);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<tr><td id=c1-1 class=yt-a410ad34-8f55-11ee-2db3-f776153b682b><div><span>1</span></div></td><td id=c1-2 class=yt-a410ad34-8f55-11ee-2db3-f776153b682b><div><span>4</span></div></td><td id=c1-3 class=yt-a410ad34-8f55-11ee-2db3-f776153b682b><div><span>8</span></div></td><td id=c1-4 class=yt-a410ad34-8f55-11ee-2db3-f776153b682b><div><span>9</span></div></td><td id=c1-5 class=yt-a410ad34-8f55-11ee-2db3-f776153b682b><div><span>13</span></div></td><td id=c1-6 class=yt-a410ad34-8f55-11ee-2db3-f776153b682b><div><span>14</span></div></td></tr><tr><td id=c2-1 class=yt-a410ad34-8f55-11ee-2db3-f776153b682b><div><span>2</span></div></td><td id=c2-2 class=yt-a410ad34-8f55-11ee-2db3-f776153b682b><div><span>5</span></div></td><td id=c2-3 class=yt-a410ad34-8f55-11ee-2db3-f776153b682b><div><span>11</span></div></td></tr><tr><td id=c3-1 class=yt-a410ad34-8f55-11ee-2db3-f776153b682b><div><span>3</span></div></td><td id=c3-2 class=yt-a410ad34-8f55-11ee-2db3-f776153b682b><div><span>6</span></div></td></tr><tr><td id=c4-1 class=yt-a410ad34-8f55-11ee-2db3-f776153b682b><div><span>7</span></div></td></tr><tr><td id=c5-1 class=yt-a410ad34-8f55-11ee-2db3-f776153b682b><div><span>10</span></div></td></tr><tr><td id=c6-1 class=yt-a410ad34-8f55-11ee-2db3-f776153b682b><div><span>12</span></div></td></tr></table></div>
+<div id=x class='yt-a410ad34-8f55-11ee-2db3-f776153b682b' style="font-family: var(--julia-mono-font-stack); width: auto"><div><span>15</span></div></div>
+</div>
+
+</div>
+<br>
+<table style='border: none'>
+<style scoped>
+    .yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7 {
+        border: 1pt solid;
+        width: 6.25%;
+        padding: 8px;
+    }
+    .yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7 div {
+        font-size: large;
+        aspect-ratio: 1;
+        min-width: max(1ch, 1em);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<tr><td id=c1-1 class=yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7><div><span> </span></div></td><td id=c1-2 class=yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7><div><span> </span></div></td><td id=c1-3 class=yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7><div><span> </span></div></td><td id=c1-4 class=yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7><div><span> </span></div></td><td id=c1-5 class=yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7><div><span> </span></div></td><td id=c1-6 class=yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7><div><span> </span></div></td><td id=c1-7 class=yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7><div><span> </span></div></td><td id=c1-8 class=yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7><div><span> </span></div></td><td id=c1-9 class=yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7><div><span> </span></div></td><td id=c1-10 class=yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7><div><span> </span></div></td><td id=c1-11 class=yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7><div><span> </span></div></td><td id=c1-12 class=yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7><div><span> </span></div></td><td id=c1-13 class=yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7><div><span> </span></div></td><td id=c1-14 class=yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7><div><span> </span></div></td><td id=c1-15 class=yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7><div><span> </span></div></td><td id=c1-16 class=yt-a410d64a-8f55-11ee-1a1f-d73cd89f9bb7><div><span>2</span></div></td></tr></table>
+¢op§replace¤path”¬cell_resultsÙ$9bc40166-338b-4060-bb76-16e30e3f7086¦output¤bodyƒ¥valueÃ¢op§replace¤path”¬cell_resultsÙ$9bc40166-338b-4060-bb76-16e30e3f7086¦output°persist_js_stateƒ¥valueËAÙZèÌâ¢op§replace¤path”¬cell_resultsÙ$9bc40166-338b-4060-bb76-16e30e3f7086¦output²last_run_timestampƒ¥valueÎ ^Ÿ¢op§replace¤path“¬cell_resultsÙ$9bc40166-338b-4060-bb76-16e30e3f7086§runtimeƒ¥value¢op§replace¤path“¬cell_resultsÙ$e3c074b4-7d4e-4a02-8d14-ffdc54439ecb¤logsƒ¥valueÚ"<br>
+<div style="display: flex">
+<style>
+@keyframes replace-a410759c-8f55-11ee-1679-d95aa9c4b07d {
+  from {}
+  to {
+    transform: translateX(calc(-300% - 0.0pt));
+  }
+}
+@keyframes pop-a41075a6-8f55-11ee-1e2f-bf47b7cc747d {
+  0% {}
+  50% {transform: translateY(-100%); outline: 1pt solid;}
+  100% {
+    transform: translateY(100%) translateX(300%);
+  }
+}
+
+.vis-container-a4107574-8f55-11ee-12c9-e7aff3b750f3 {
+	display: grid;
+    grid-auto-columns: 1fr;
+	width: fit-content;
+	height: fit-content;
+	margin: auto;
+	margin-block-end: var(--pluto-cell-spacing);
+	margin-block-start: var(--pluto-cell-spacing);
+    grid-template: "yt yt yt yt yt . . "
+"yt yt yt yt yt . x"
+"yt yt yt yt yt . . "
+"yt yt yt yt yt . . "
+"yt yt yt yt yt . . "
+"yt yt yt yt yt . . "
+"yt yt yt yt yt . . "
+"yt yt yt yt yt . . "
+". . . . . . . ";
+}
+
+.vis-container-a4107574-8f55-11ee-12c9-e7aff3b750f3 #yt {
+	grid-area: yt;
+}
+.vis-container-a4107574-8f55-11ee-12c9-e7aff3b750f3 #yt table {
+	margin: 0;
+    width: 100%;
+}
+.vis-container-a4107574-8f55-11ee-12c9-e7aff3b750f3 #x {
+    grid-area: x;
+    background-color: green;
+    animation-name: replace-a410759c-8f55-11ee-1679-d95aa9c4b07d;
+animation-duration: 1s;
+animation-fill-mode: forwards;
+
+    /**/
+}
+.vis-container-a4107574-8f55-11ee-12c9-e7aff3b750f3 #c2-4.yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c {
+    background-color: darkred;
+    animation-name: pop-a41075a6-8f55-11ee-1e2f-bf47b7cc747d;
+animation-duration: 2s;
+animation-fill-mode: forwards;
+
+}
+
+</style>
+<div class='vis-container-a4107574-8f55-11ee-12c9-e7aff3b750f3'>
+<div id=yt><table style='border: none'>
+<style scoped>
+    .yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c {
+        border: 1pt solid;
+        width: 20.0%;
+        padding: 8px;
+    }
+    .yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c div {
+        font-size: large;
+        aspect-ratio: 1;
+        min-width: max(2ch, 1em);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<tr><td id=c1-1 class=yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c><div><span> </span></div></td><td id=c1-2 class=yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c><div><span>E</span></div></td><td id=c1-3 class=yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c><div><span>E</span></div></td><td id=c1-4 class=yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c><div><span>E</span></div></td><td id=c1-5 class=yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c><div><span>ì„±</span></div></td></tr><tr><td id=c2-1 class=yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c><div><span>A</span></div></td><td id=c2-2 class=yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c><div><span>R</span></div></td><td id=c2-3 class=yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c><div><span>R</span></div></td></tr><tr><td id=c3-1 class=yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c><div><span>H</span></div></td></tr><tr><td id=c4-1 class=yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c><div><span>M</span></div></td></tr><tr><td id=c5-1 class=yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c><div><span>N</span></div></td></tr><tr><td id=c6-1 class=yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c><div><span>O</span></div></td></tr><tr><td id=c7-1 class=yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c><div><span>U</span></div></td></tr><tr><td id=c8-1 class=yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c><div><span>Y</span></div></td></tr></table></div>
+<div id=x class='yt-a4107592-8f55-11ee-1c55-b5ec25ae3c3c' style="font-family: var(--julia-mono-font-stack); width: auto"><div><span>ì •</span></div></div>
+</div>
+
+<style>
+@keyframes replace-a4107718-8f55-11ee-34a0-0d0b98e59aa2 {
+  from {}
+  to {
+    transform: translateX(calc(-300% - 0.0pt));
+  }
+}
+@keyframes pop-a4107722-8f55-11ee-227a-5106be769e0c {
+  0% {}
+  50% {transform: translateY(-100%); outline: 1pt solid;}
+  100% {
+    transform: translateY(100%) translateX(300%);
+  }
+}
+
+.vis-container-a4107704-8f55-11ee-03a6-49d9f46cc482 {
+	display: grid;
+    grid-auto-columns: 1fr;
+	width: fit-content;
+	height: fit-content;
+	margin: auto;
+	margin-block-end: var(--pluto-cell-spacing);
+	margin-block-start: var(--pluto-cell-spacing);
+    grid-template: "yt yt yt yt yt . . "
+"yt yt yt yt yt . x"
+"yt yt yt yt yt . . "
+"yt yt yt yt yt . . "
+"yt yt yt yt yt . . "
+"yt yt yt yt yt . . "
+"yt yt yt yt yt . . "
+"yt yt yt yt yt . . "
+". . . . . . . ";
+}
+
+.vis-container-a4107704-8f55-11ee-03a6-49d9f46cc482 #yt {
+	grid-area: yt;
+}
+.vis-container-a4107704-8f55-11ee-03a6-49d9f46cc482 #yt table {
+	margin: 0;
+    width: 100%;
+}
+.vis-container-a4107704-8f55-11ee-03a6-49d9f46cc482 #x {
+    grid-area: x;
+    background-color: green;
+    animation-name: replace-a4107718-8f55-11ee-34a0-0d0b98e59aa2;
+animation-duration: 1s;
+animation-fill-mode: forwards;
+
+    /**/
+}
+.vis-container-a4107704-8f55-11ee-03a6-49d9f46cc482 #c2-4.yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb {
+    background-color: darkred;
+    animation-name: pop-a4107722-8f55-11ee-227a-5106be769e0c;
+animation-duration: 2s;
+animation-fill-mode: forwards;
+
+}
+
+</style>
+<div class='vis-container-a4107704-8f55-11ee-03a6-49d9f46cc482'>
+<div id=yt><table style='border: none'>
+<style scoped>
+    .yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb {
+        border: 1pt solid;
+        width: 20.0%;
+        padding: 8px;
+    }
+    .yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb div {
+        font-size: large;
+        aspect-ratio: 1;
+        min-width: max(2ch, 1em);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<tr><td id=c1-1 class=yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb><div><span>1</span></div></td><td id=c1-2 class=yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb><div><span>3</span></div></td><td id=c1-3 class=yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb><div><span>9</span></div></td><td id=c1-4 class=yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb><div><span>11</span></div></td><td id=c1-5 class=yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb><div><span>14</span></div></td></tr><tr><td id=c2-1 class=yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb><div><span>2</span></div></td><td id=c2-2 class=yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb><div><span>7</span></div></td><td id=c2-3 class=yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb><div><span>12</span></div></td></tr><tr><td id=c3-1 class=yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb><div><span>4</span></div></td></tr><tr><td id=c4-1 class=yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb><div><span>5</span></div></td></tr><tr><td id=c5-1 class=yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb><div><span>6</span></div></td></tr><tr><td id=c6-1 class=yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb><div><span>8</span></div></td></tr><tr><td id=c7-1 class=yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb><div><span>10</span></div></td></tr><tr><td id=c8-1 class=yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb><div><span>13</span></div></td></tr></table></div>
+<div id=x class='yt-a410770e-8f55-11ee-0da2-75f0b20ed0cb' style="font-family: var(--julia-mono-font-stack); width: auto"><div><span>15</span></div></div>
+</div>
+
+</div>
+<br>
+<table style='border: none'>
+<style scoped>
+    .yt-a4108f28-8f55-11ee-3514-87150bea316e {
+        border: 1pt solid;
+        width: 6.25%;
+        padding: 8px;
+    }
+    .yt-a4108f28-8f55-11ee-3514-87150bea316e div {
+        font-size: large;
+        aspect-ratio: 1;
+        min-width: max(2ch, 1em);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<tr><td id=c1-1 class=yt-a4108f28-8f55-11ee-3514-87150bea316e><div><span> </span></div></td><td id=c1-2 class=yt-a4108f28-8f55-11ee-3514-87150bea316e><div><span> </span></div></td><td id=c1-3 class=yt-a4108f28-8f55-11ee-3514-87150bea316e><div><span> </span></div></td><td id=c1-4 class=yt-a4108f28-8f55-11ee-3514-87150bea316e><div><span> </span></div></td><td id=c1-5 class=yt-a4108f28-8f55-11ee-3514-87150bea316e><div><span> </span></div></td><td id=c1-6 class=yt-a4108f28-8f55-11ee-3514-87150bea316e><div><span> </span></div></td><td id=c1-7 class=yt-a4108f28-8f55-11ee-3514-87150bea316e><div><span> </span></div></td><td id=c1-8 class=yt-a4108f28-8f55-11ee-3514-87150bea316e><div><span> </span></div></td><td id=c1-9 class=yt-a4108f28-8f55-11ee-3514-87150bea316e><div><span> </span></div></td><td id=c1-10 class=yt-a4108f28-8f55-11ee-3514-87150bea316e><div><span> </span></div></td><td id=c1-11 class=yt-a4108f28-8f55-11ee-3514-87150bea316e><div><span> </span></div></td><td id=c1-12 class=yt-a4108f28-8f55-11ee-3514-87150bea316e><div><span> </span></div></td><td id=c1-13 class=yt-a4108f28-8f55-11ee-3514-87150bea316e><div><span> </span></div></td><td id=c1-14 class=yt-a4108f28-8f55-11ee-3514-87150bea316e><div><span> </span></div></td><td id=c1-15 class=yt-a4108f28-8f55-11ee-3514-87150bea316e><div><span> </span></div></td><td id=c1-16 class=yt-a4108f28-8f55-11ee-3514-87150bea316e><div><span>ìš°</span></div></td></tr></table>
+¢op§replace¤path”¬cell_resultsÙ$e3c074b4-7d4e-4a02-8d14-ffdc54439ecb¦output¤bodyƒ¥valueÃ¢op§replace¤path”¬cell_resultsÙ$e3c074b4-7d4e-4a02-8d14-ffdc54439ecb¦output°persist_js_stateƒ¥valueËAÙZè¯¢op§replace¤path”¬cell_resultsÙ$e3c074b4-7d4e-4a02-8d14-ffdc54439ecb¦output²last_run_timestampƒ¥valueÎ 2É¢op§replace¤path“¬cell_resultsÙ$e3c074b4-7d4e-4a02-8d14-ffdc54439ecb§runtimeƒ¥value„¤name¨notebook¨subtasksƒ©workspace„¤name©workspace¨subtasks‚¬init_process„¤name¬init_process¨subtasks„¡4„¤name¡4¨subtasks€«finished_atËAÙZÂfIªstarted_atËAÙZÁDˆ'¡1„¤name¡1¨subtasks€«finished_atËAÙZÁ.Úùªstarted_atËAÙZÀ±Œ¡2„¤name¡2¨subtasks€«finished_atËAÙZÁ>‚ªstarted_atËAÙZÁ.Û
+¡3„¤name¡3¨subtasks€«finished_atËAÙZÁDˆªstarted_atËAÙZÁ>‚8«finished_atËAÙZÂfVªstarted_atËAÙZÀ±I®create_process„¤name®create_process¨subtasks€«finished_atËAÙZÀ±Eªstarted_atËAÙZ¾èël«finished_atËAÙZÂf^ªstarted_atËAÙZ¾èëF£pkg„¤name£pkg¨subtasks†¬instantiate1„¤name¬instantiate1¨subtasks€«finished_atËAÙZ¿ğ³xªstarted_atËAÙZ¿â\£add„¤name£add¨subtasks€«finished_atËAÙZÀ¬Yhªstarted_atËAÙZÀ}“Í¨analysis„¤name¨analysis¨subtasks€«finished_atËAÙZ¾²[ªstarted_atËAÙZ¾Š~¬instantiate2„¤name¬instantiate2¨subtasks€«finished_atËAÙZÀ¬ò¶ªstarted_atËAÙZÀ¬Y}ªprecompile„¤nameªprecompile¨subtasks€«finished_atËAÙZÕ€sªstarted_atËAÙZÀ¬ò¿§resolve„¤name§resolve¨subtasks€«finished_atËAÙZÀHªøªstarted_atËAÙZ¿ğ³«finished_atËAÙZÕ@«ªstarted_atËAÙZ¾Š3£run„¤name£run¨subtasks‚°resolve_topology„¤name°resolve_topology¨subtasks€«finished_atËAÙZèlªstarted_atËAÙZèi¥¨evaluate„¤name¨evaluate¨subtasks‚¡1„¤name¡1¨subtasks€«finished_atËAÙZè¯%ªstarted_atËAÙZè˜á¡2„¤name¡2¨subtasks€«finished_atËAÙZèÌûªstarted_atËAÙZè¯6«finished_atËAÙZèÚªstarted_atËAÙZèl"«finished_atËAÙZèÚªstarted_atËAÙZèi«finished_atÀªstarted_atËAÙZ½ş?y¢op£add¤path‘«status_treeµids_of_cells_that_ran’Ù$e3c074b4-7d4e-4a02-8d14-ffdc54439ecbÙ$9bc40166-338b-4060-bb76-16e30e3f7086

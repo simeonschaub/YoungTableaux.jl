@@ -1,15 +1,24 @@
 name = "YoungTableaux"
 uuid = "b7062236-b0aa-4473-bf76-66f344053691"
 authors = ["Simeon David Schaub <simeon@schaub.rocks> and contributors"]
-version = "1.1.0"
+version = "1.2.0"
 
 [deps]
 HypertextLiteral = "ac1192a8-f4b3-4bfe-ba22-af5b92cd3ab2"
 MappedArrays = "dbb5928d-eab1-5f90-85c2-b9b0edb7c900"
 UUIDs = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
 
+[weakdeps]
+GeometryBasics = "5c1252a2-5f33-56bf-86c9-59e7332b4326"
+Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
+
+[extensions]
+MakieExtension = ["Makie", "GeometryBasics"]
+
 [compat]
+GeometryBasics = "0.5"
 HypertextLiteral = "0.9"
+Makie = "0.22"
 MappedArrays = "0.4"
-UUIDs = "1.9"
-julia = "1.9"
+UUIDs = "1.10"
+julia = "1.10"

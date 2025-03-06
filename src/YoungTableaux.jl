@@ -69,17 +69,24 @@ function row(yt, i::Int; rows=rows(yt))
     return isassigned(rows, i) ? rows[i] : ()
 end
 
+function findsortedlast(f, range::UnitRange{Int})
+    for i in reverse(range)
+        f(i) && return i
+    end
+    return first(range) - 1
+end
+
 function _divide_range(range::UnitRange{Int})
     a, b = first(range), last(range)
     m = a + (b - a) ÷ 2
     return a:m, m+1:b
 end
 
-function _bisect_max(f, range::UnitRange{Int}; cutoff::Val{c}=Val(16)) where {c}
-    length(range) <= c && return findlast(f, range)
+function _bisect_max(f, range::UnitRange{Int}; cutoff::Val{c}=Val(256)) where {c}
+    length(range) <= c && return findsortedlast(f, range)
     a, b = _divide_range(range)
-    res_b = _bisect_max(f, b; cutoff)
-    return res_b === nothing ? _bisect_max(f, a; cutoff) : res_b
+    res_a = _bisect_max(f, a; cutoff)
+    return res_a == a[end] ? _bisect_max(f, b; cutoff) : res_a
 end
 
 nrows(yt) = nrows(AccessTrait(yt), yt)
@@ -87,7 +94,7 @@ nrows(::RowMajor, yt) = length(rows(yt))
 nrows(yt, i::Int) = nrows(AccessTrait(yt), yt, i)
 function nrows(::RowMajor, yt, i::Int)
     rows = YoungTableaux.rows(yt)
-    return something(_bisect_max(j -> isassigned(rows[j], i), 1:length(rows)), 0)
+    return _bisect_max(j -> isassigned(rows[j], i), 1:length(rows))
 end
 
 ncols(yt) = ncols(AccessTrait(yt), yt)

@@ -48,8 +48,19 @@ end
     @test P' .+ P == P .+ P'
 end
 
+@testitem "adjoint" begin
+    using Random
+
+    P, Q = rs_pair(randperm(100000))
+    @test issorted(length.(rows(P')), rev=true)
+    @test length(reduce(vcat, rows(P'))) == 100000
+
+    @test rows(YoungTableaux.ColumnMajor{true}(), P') == rows(P')
+end
 
 @testitem "doctests" begin
-    using Documenter: doctest
+    using Documenter
+
+    DocMeta.setdocmeta!(YoungTableaux, :DocTestSetup, :(using YoungTableaux); recursive=true)
     doctest(YoungTableaux)
 end

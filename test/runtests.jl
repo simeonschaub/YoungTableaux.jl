@@ -5,11 +5,14 @@ using Test, TestItems, TestItemRunner
 
 @testitem "basic functionality" begin
     π = [4, 6, 3, 8, 1, 2, 7, 5]
-    P, Q = YoungTableaux.rs_pair(π)
-    P′, Q′ = YoungTableau{Int64}([[1, 2, 5], [3, 6, 7], [4, 8]]), YoungTableau{Int64}([[1, 2, 4], [3, 6, 7], [5, 8]])
+    P, Q = rs_pair(π)
+    P′, Q′ = YoungTableau{Int}([[1, 2, 5], [3, 6, 7], [4, 8]]), YoungTableau{Int}([[1, 2, 4], [3, 6, 7], [5, 8]])
 
     @test P == P′
     @test hash(P) == hash(P′)
+    @test Q == Q′
+    @test P != Q
+    @test hash(P) != hash(Q)
 
     @test nrows(P) == 3
     @test ncols(P) == 3
@@ -29,9 +32,9 @@ end
 @testitem "broadcasting" begin
     π = [4, 6, 3, 8, 1, 2, 7, 5]
     P, Q = YoungTableaux.rs_pair(π)
-    P′, Q′ = YoungTableau{Int64}([[1, 2, 5], [3, 6, 7], [4, 8]]), YoungTableau{Int64}([[1, 2, 4], [3, 6, 7], [5, 8]])
+    P′, Q′ = YoungTableau{Int}([[1, 2, 5], [3, 6, 7], [4, 8]]), YoungTableau{Int}([[1, 2, 4], [3, 6, 7], [5, 8]])
 
-    @test P .+ 1 == YoungTableau{Int64}([[2, 3, 6], [4, 7, 8], [5, 9]])
+    @test P .+ 1 == YoungTableau{Int}([[2, 3, 6], [4, 7, 8], [5, 9]])
     @test 1 .* P .+ 0 == P′
 
     P_mat = zeros(3, 3) .+ P

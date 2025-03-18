@@ -1,0 +1,339 @@
+‚§patches›ƒ¥value¢op§replace¤path“¬cell_resultsÙ$9bc40166-338b-4060-bb76-16e30e3f7086¤logsƒ¥valueÚ.<br>
+<div style="display: flex">
+<style>
+@keyframes replace-d127b132-03f8-11f0-126a-9f4ee758ddce {
+  from {}
+  to {
+    transform: translateX(calc(-300% - -0.19999999999999996pt));
+  }
+}
+@keyframes pop-d127b13a-03f8-11f0-1a01-9fd7aed5ba43 {
+  0% {}
+  50% {transform: translateY(-100%); outline: 1pt solid;}
+  100% {
+    transform: translateY(100%) translateX(300%);
+  }
+}
+
+.vis-container-d127b108-03f8-11f0-1e91-6b80f7a819f5 {
+	display: grid;
+    grid-auto-columns: 1fr;
+	width: fit-content;
+	height: fit-content;
+	margin: auto;
+	margin-block-end: var(--pluto-cell-spacing);
+	margin-block-start: var(--pluto-cell-spacing);
+    grid-template: "yt yt yt yt . . "
+"yt yt yt yt . x"
+"yt yt yt yt . . "
+"yt yt yt yt . . "
+". . . . . . ";
+}
+
+.vis-container-d127b108-03f8-11f0-1e91-6b80f7a819f5 #yt {
+	grid-area: yt;
+}
+.vis-container-d127b108-03f8-11f0-1e91-6b80f7a819f5 #yt table {
+	margin: 0;
+    width: 100%;
+}
+.vis-container-d127b108-03f8-11f0-1e91-6b80f7a819f5 #x {
+    grid-area: x;
+    background-color: green;
+    animation-name: replace-d127b132-03f8-11f0-126a-9f4ee758ddce;
+animation-duration: 1s;
+animation-fill-mode: forwards;
+
+    /**/
+}
+.vis-container-d127b108-03f8-11f0-1e91-6b80f7a819f5 #c2-3.yt-d127b126-03f8-11f0-38e5-75259fa8616f {
+    background-color: darkred;
+    animation-name: pop-d127b13a-03f8-11f0-1a01-9fd7aed5ba43;
+animation-duration: 2s;
+animation-fill-mode: forwards;
+
+}
+
+</style>
+<div class='vis-container-d127b108-03f8-11f0-1e91-6b80f7a819f5'>
+<div id=yt><table style='border: none'>
+<style scoped>
+    .yt-d127b126-03f8-11f0-38e5-75259fa8616f {
+        border: 1pt solid;
+        width: 25.0%;
+        padding: 8px;
+    }
+    .yt-d127b126-03f8-11f0-38e5-75259fa8616f div {
+        font-size: large;
+        aspect-ratio: 1;
+        min-width: max(2ch, 1em);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<tr><td id=c1-1 class=yt-d127b126-03f8-11f0-38e5-75259fa8616f><div><span>2</span></div></td><td id=c1-2 class=yt-d127b126-03f8-11f0-38e5-75259fa8616f><div><span>4</span></div></td><td id=c1-3 class=yt-d127b126-03f8-11f0-38e5-75259fa8616f><div><span>8</span></div></td><td id=c1-4 class=yt-d127b126-03f8-11f0-38e5-75259fa8616f><div><span>15</span></div></td></tr><tr><td id=c2-1 class=yt-d127b126-03f8-11f0-38e5-75259fa8616f><div><span>5</span></div></td><td id=c2-2 class=yt-d127b126-03f8-11f0-38e5-75259fa8616f><div><span>9</span></div></td><td id=c2-3 class=yt-d127b126-03f8-11f0-38e5-75259fa8616f><div><span>16</span></div></td></tr><tr><td id=c3-1 class=yt-d127b126-03f8-11f0-38e5-75259fa8616f><div><span>6</span></div></td><td id=c3-2 class=yt-d127b126-03f8-11f0-38e5-75259fa8616f><div><span>10</span></div></td></tr><tr><td id=c4-1 class=yt-d127b126-03f8-11f0-38e5-75259fa8616f><div><span>12</span></div></td><td id=c4-2 class=yt-d127b126-03f8-11f0-38e5-75259fa8616f><div><span>14</span></div></td></tr></table></div>
+<div id=x class='yt-d127b126-03f8-11f0-38e5-75259fa8616f' style="font-family: var(--julia-mono-font-stack); width: auto"><div><span>13</span></div></div>
+</div>
+
+<style>
+@keyframes replace-d127b268-03f8-11f0-31e9-bdd89d6dfb48 {
+  from {}
+  to {
+    transform: translateX(calc(-600% - -0.19999999999999996pt));
+  }
+}
+@keyframes pop-d127b270-03f8-11f0-364b-6338307d2817 {
+  0% {}
+  50% {transform: translateY(-100%); outline: 1pt solid;}
+  100% {
+    transform: translateY(100%) translateX(600%);
+  }
+}
+
+.vis-container-d127b252-03f8-11f0-3e03-01c118ab33b1 {
+	display: grid;
+    grid-auto-columns: 1fr;
+	width: fit-content;
+	height: fit-content;
+	margin: auto;
+	margin-block-end: var(--pluto-cell-spacing);
+	margin-block-start: var(--pluto-cell-spacing);
+    grid-template: "yt yt yt yt . . "
+"yt yt yt yt . x"
+"yt yt yt yt . . "
+"yt yt yt yt . . "
+". . . . . . ";
+}
+
+.vis-container-d127b252-03f8-11f0-3e03-01c118ab33b1 #yt {
+	grid-area: yt;
+}
+.vis-container-d127b252-03f8-11f0-3e03-01c118ab33b1 #yt table {
+	margin: 0;
+    width: 100%;
+}
+.vis-container-d127b252-03f8-11f0-3e03-01c118ab33b1 #x {
+    grid-area: x;
+    background-color: green;
+    
+    /**/
+}
+.vis-container-d127b252-03f8-11f0-3e03-01c118ab33b1 #c2-0.yt-d127b25c-03f8-11f0-0a77-cd95dced712e {
+    background-color: darkred;
+    
+}
+
+</style>
+<div class='vis-container-d127b252-03f8-11f0-3e03-01c118ab33b1'>
+<div id=yt><table style='border: none'>
+<style scoped>
+    .yt-d127b25c-03f8-11f0-0a77-cd95dced712e {
+        border: 1pt solid;
+        width: 25.0%;
+        padding: 8px;
+    }
+    .yt-d127b25c-03f8-11f0-0a77-cd95dced712e div {
+        font-size: large;
+        aspect-ratio: 1;
+        min-width: max(2ch, 1em);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<tr><td id=c1-1 class=yt-d127b25c-03f8-11f0-0a77-cd95dced712e><div><span>1</span></div></td><td id=c1-2 class=yt-d127b25c-03f8-11f0-0a77-cd95dced712e><div><span>2</span></div></td><td id=c1-3 class=yt-d127b25c-03f8-11f0-0a77-cd95dced712e><div><span>3</span></div></td><td id=c1-4 class=yt-d127b25c-03f8-11f0-0a77-cd95dced712e><div><span>5</span></div></td></tr><tr><td id=c2-1 class=yt-d127b25c-03f8-11f0-0a77-cd95dced712e><div><span>4</span></div></td><td id=c2-2 class=yt-d127b25c-03f8-11f0-0a77-cd95dced712e><div><span>7</span></div></td><td id=c2-3 class=yt-d127b25c-03f8-11f0-0a77-cd95dced712e><div><span>10</span></div></td></tr><tr><td id=c3-1 class=yt-d127b25c-03f8-11f0-0a77-cd95dced712e><div><span>6</span></div></td><td id=c3-2 class=yt-d127b25c-03f8-11f0-0a77-cd95dced712e><div><span>8</span></div></td></tr><tr><td id=c4-1 class=yt-d127b25c-03f8-11f0-0a77-cd95dced712e><div><span>9</span></div></td><td id=c4-2 class=yt-d127b25c-03f8-11f0-0a77-cd95dced712e><div><span>11</span></div></td></tr></table></div>
+<div id=x class='yt-d127b25c-03f8-11f0-0a77-cd95dced712e' style="font-family: var(--julia-mono-font-stack); width: auto"><div><span>12</span></div></div>
+</div>
+
+</div>
+<br>
+<table style='border: none'>
+<style scoped>
+    .yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8 {
+        border: 1pt solid;
+        width: 6.25%;
+        padding: 8px;
+    }
+    .yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8 div {
+        font-size: large;
+        aspect-ratio: 1;
+        min-width: max(2ch, 1em);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<tr><td id=c1-1 class=yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8><div><span> </span></div></td><td id=c1-2 class=yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8><div><span> </span></div></td><td id=c1-3 class=yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8><div><span> </span></div></td><td id=c1-4 class=yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8><div><span> </span></div></td><td id=c1-5 class=yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8><div><span> </span></div></td><td id=c1-6 class=yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8><div><span> </span></div></td><td id=c1-7 class=yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8><div><span> </span></div></td><td id=c1-8 class=yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8><div><span> </span></div></td><td id=c1-9 class=yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8><div><span> </span></div></td><td id=c1-10 class=yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8><div><span> </span></div></td><td id=c1-11 class=yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8><div><span> </span></div></td><td id=c1-12 class=yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8><div><span> </span></div></td><td id=c1-13 class=yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8><div><span>3</span></div></td><td id=c1-14 class=yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8><div><span>11</span></div></td><td id=c1-15 class=yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8><div><span>7</span></div></td><td id=c1-16 class=yt-d127ca44-03f8-11f0-0a84-5b90b8d146d8><div><span>1</span></div></td></tr></table>
+¢op§replace¤path”¬cell_resultsÙ$9bc40166-338b-4060-bb76-16e30e3f7086¦output¤bodyƒ¥valueÃ¢op§replace¤path”¬cell_resultsÙ$9bc40166-338b-4060-bb76-16e30e3f7086¦output°persist_js_stateƒ¥valueËAÙö[‹Ò¢op§replace¤path”¬cell_resultsÙ$9bc40166-338b-4060-bb76-16e30e3f7086¦output²last_run_timestampƒ¥valueÍø4¢op§replace¤path“¬cell_resultsÙ$9bc40166-338b-4060-bb76-16e30e3f7086§runtimeƒ¥value¢op§replace¤path“¬cell_resultsÙ$e3c074b4-7d4e-4a02-8d14-ffdc54439ecb¤logsƒ¥valueÚœ<br>
+<div style="display: flex">
+<style>
+@keyframes replace-d1277cf6-03f8-11f0-0af4-a185398630f8 {
+  from {}
+  to {
+    transform: translateX(calc(-300% - -0.6pt));
+  }
+}
+@keyframes pop-d1277d00-03f8-11f0-3ab3-7dc286935509 {
+  0% {}
+  50% {transform: translateY(-100%); outline: 1pt solid;}
+  100% {
+    transform: translateY(100%) translateX(300%);
+  }
+}
+
+.vis-container-d1277cce-03f8-11f0-2f9b-21a8de8917cc {
+	display: grid;
+    grid-auto-columns: 1fr;
+	width: fit-content;
+	height: fit-content;
+	margin: auto;
+	margin-block-end: var(--pluto-cell-spacing);
+	margin-block-start: var(--pluto-cell-spacing);
+    grid-template: "yt yt . . "
+"yt yt . . "
+". . . x";
+}
+
+.vis-container-d1277cce-03f8-11f0-2f9b-21a8de8917cc #yt {
+	grid-area: yt;
+}
+.vis-container-d1277cce-03f8-11f0-2f9b-21a8de8917cc #yt table {
+	margin: 0;
+    width: 100%;
+}
+.vis-container-d1277cce-03f8-11f0-2f9b-21a8de8917cc #x {
+    grid-area: x;
+    background-color: green;
+    animation-name: replace-d1277cf6-03f8-11f0-0af4-a185398630f8;
+animation-duration: 1s;
+animation-fill-mode: forwards;
+
+    /*margin-top: -0.5pt;
+*/
+}
+.vis-container-d1277cce-03f8-11f0-2f9b-21a8de8917cc #c3-1.yt-d1277ce2-03f8-11f0-14a2-d9bd5e672537 {
+    background-color: darkred;
+    animation-name: pop-d1277d00-03f8-11f0-3ab3-7dc286935509;
+animation-duration: 2s;
+animation-fill-mode: forwards;
+
+}
+
+</style>
+<div class='vis-container-d1277cce-03f8-11f0-2f9b-21a8de8917cc'>
+<div id=yt><table style='border: none'>
+<style scoped>
+    .yt-d1277ce2-03f8-11f0-14a2-d9bd5e672537 {
+        border: 1pt solid;
+        width: 50.0%;
+        padding: 8px;
+    }
+    .yt-d1277ce2-03f8-11f0-14a2-d9bd5e672537 div {
+        font-size: large;
+        aspect-ratio: 1;
+        min-width: max(1ch, 1em);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<tr><td id=c1-1 class=yt-d1277ce2-03f8-11f0-14a2-d9bd5e672537><div><span>L</span></div></td><td id=c1-2 class=yt-d1277ce2-03f8-11f0-14a2-d9bd5e672537><div><span>O</span></div></td></tr><tr><td id=c2-1 class=yt-d1277ce2-03f8-11f0-14a2-d9bd5e672537><div><span>P</span></div></td><td id=c2-2 class=yt-d1277ce2-03f8-11f0-14a2-d9bd5e672537><div><span>T</span></div></td></tr></table></div>
+<div id=x class='yt-d1277ce2-03f8-11f0-14a2-d9bd5e672537' style="font-family: var(--julia-mono-font-stack); width: auto"><div><span>U</span></div></div>
+</div>
+
+<style>
+@keyframes replace-d1277ddc-03f8-11f0-0240-9b72d0a1370a {
+  from {}
+  to {
+    transform: translateX(calc(-300% - -0.6pt));
+  }
+}
+@keyframes pop-d1277de6-03f8-11f0-0ea8-878975821428 {
+  0% {}
+  50% {transform: translateY(-100%); outline: 1pt solid;}
+  100% {
+    transform: translateY(100%) translateX(300%);
+  }
+}
+
+.vis-container-d1277dc8-03f8-11f0-3fd6-4f8ba03d1c99 {
+	display: grid;
+    grid-auto-columns: 1fr;
+	width: fit-content;
+	height: fit-content;
+	margin: auto;
+	margin-block-end: var(--pluto-cell-spacing);
+	margin-block-start: var(--pluto-cell-spacing);
+    grid-template: "yt yt . . "
+"yt yt . . "
+". . . x";
+}
+
+.vis-container-d1277dc8-03f8-11f0-3fd6-4f8ba03d1c99 #yt {
+	grid-area: yt;
+}
+.vis-container-d1277dc8-03f8-11f0-3fd6-4f8ba03d1c99 #yt table {
+	margin: 0;
+    width: 100%;
+}
+.vis-container-d1277dc8-03f8-11f0-3fd6-4f8ba03d1c99 #x {
+    grid-area: x;
+    background-color: green;
+    animation-name: replace-d1277ddc-03f8-11f0-0240-9b72d0a1370a;
+animation-duration: 1s;
+animation-fill-mode: forwards;
+
+    /*margin-top: -0.5pt;
+*/
+}
+.vis-container-d1277dc8-03f8-11f0-3fd6-4f8ba03d1c99 #c3-1.yt-d1277dd2-03f8-11f0-3da8-3fbeb022870b {
+    background-color: darkred;
+    animation-name: pop-d1277de6-03f8-11f0-0ea8-878975821428;
+animation-duration: 2s;
+animation-fill-mode: forwards;
+
+}
+
+</style>
+<div class='vis-container-d1277dc8-03f8-11f0-3fd6-4f8ba03d1c99'>
+<div id=yt><table style='border: none'>
+<style scoped>
+    .yt-d1277dd2-03f8-11f0-3da8-3fbeb022870b {
+        border: 1pt solid;
+        width: 50.0%;
+        padding: 8px;
+    }
+    .yt-d1277dd2-03f8-11f0-3da8-3fbeb022870b div {
+        font-size: large;
+        aspect-ratio: 1;
+        min-width: max(1ch, 1em);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<tr><td id=c1-1 class=yt-d1277dd2-03f8-11f0-3da8-3fbeb022870b><div><span>1</span></div></td><td id=c1-2 class=yt-d1277dd2-03f8-11f0-3da8-3fbeb022870b><div><span>3</span></div></td></tr><tr><td id=c2-1 class=yt-d1277dd2-03f8-11f0-3da8-3fbeb022870b><div><span>2</span></div></td><td id=c2-2 class=yt-d1277dd2-03f8-11f0-3da8-3fbeb022870b><div><span>4</span></div></td></tr></table></div>
+<div id=x class='yt-d1277dd2-03f8-11f0-3da8-3fbeb022870b' style="font-family: var(--julia-mono-font-stack); width: auto"><div><span>5</span></div></div>
+</div>
+
+</div>
+<br>
+<table style='border: none'>
+<style scoped>
+    .yt-d12794b6-03f8-11f0-0192-f5c2f7ef2e59 {
+        border: 1pt solid;
+        width: 10.0%;
+        padding: 8px;
+    }
+    .yt-d12794b6-03f8-11f0-0192-f5c2f7ef2e59 div {
+        font-size: large;
+        aspect-ratio: 1;
+        min-width: max(1ch, 1em);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<tr><td id=c1-1 class=yt-d12794b6-03f8-11f0-0192-f5c2f7ef2e59><div><span> </span></div></td><td id=c1-2 class=yt-d12794b6-03f8-11f0-0192-f5c2f7ef2e59><div><span> </span></div></td><td id=c1-3 class=yt-d12794b6-03f8-11f0-0192-f5c2f7ef2e59><div><span> </span></div></td><td id=c1-4 class=yt-d12794b6-03f8-11f0-0192-f5c2f7ef2e59><div><span> </span></div></td><td id=c1-5 class=yt-d12794b6-03f8-11f0-0192-f5c2f7ef2e59><div><span> </span></div></td><td id=c1-6 class=yt-d12794b6-03f8-11f0-0192-f5c2f7ef2e59><div><span>R</span></div></td><td id=c1-7 class=yt-d12794b6-03f8-11f0-0192-f5c2f7ef2e59><div><span>O</span></div></td><td id=c1-8 class=yt-d12794b6-03f8-11f0-0192-f5c2f7ef2e59><div><span>C</span></div></td><td id=c1-9 class=yt-d12794b6-03f8-11f0-0192-f5c2f7ef2e59><div><span>K</span></div></td><td id=c1-10 class=yt-d12794b6-03f8-11f0-0192-f5c2f7ef2e59><div><span>S</span></div></td></tr></table>
+¢op§replace¤path”¬cell_resultsÙ$e3c074b4-7d4e-4a02-8d14-ffdc54439ecb¦output¤bodyƒ¥valueÃ¢op§replace¤path”¬cell_resultsÙ$e3c074b4-7d4e-4a02-8d14-ffdc54439ecb¦output°persist_js_stateƒ¥valueËAÙö[‹x¸¢op§replace¤path”¬cell_resultsÙ$e3c074b4-7d4e-4a02-8d14-ffdc54439ecb¦output²last_run_timestampƒ¥valueÍ¶.¢op§replace¤path“¬cell_resultsÙ$e3c074b4-7d4e-4a02-8d14-ffdc54439ecb§runtimeƒ¥value…¤name¨notebook¨subtasksƒ©workspace…¤name©workspace¨subtasks‚¬init_process…¤name¬init_process¨subtasks„¡4…¤name¡4¨subtasks€«finished_atËAÙö['¸=§successÃªstarted_atËAÙö['z¢×¡1…¤name¡1¨subtasks€«finished_atËAÙö['k§ø§successÃªstarted_atËAÙö['V#¡2…¤name¡2¨subtasks€«finished_atËAÙö['pƒ#§successÃªstarted_atËAÙö['k¨¡3…¤name¡3¨subtasks€«finished_atËAÙö['z¢¾§successÃªstarted_atËAÙö['pƒ4«finished_atËAÙö['¸R§successÃªstarted_atËAÙö['V#‰®create_process…¤name®create_process¨subtasks‚Ù!Loading notebook boot environment…¤nameÙ!Loading notebook boot environment¨subtasks€«finished_atËAÙö['V#h§successÃªstarted_atËAÙö["ãe°Starting process…¤name°Starting process¨subtasks€«finished_atËAÙö["ãT§successÃªstarted_atËAÙö["—ˆø«finished_atËAÙö['V#d§successÃªstarted_atËAÙö["—ˆã«finished_atËAÙö['¸V§successÃªstarted_atËAÙö["—ˆÎ£pkg…¤name£pkg¨subtasks†¬instantiate1…¤name¬instantiate1¨subtasks€«finished_atËAÙö[(_Ìê§successÃªstarted_atËAÙö["›ÌŠ£add…¤name£add¨subtasks€«finished_atËAÙö[~!ï5§successÀªstarted_atËAÙö[~!ï5¨analysis…¤name¨analysis¨subtasks€«finished_atËAÙö[!İÄ§successÃªstarted_atËAÙö[!İÜ¬instantiate2…¤name¬instantiate2¨subtasks€«finished_atËAÙö[~!ï9§successÀªstarted_atËAÙö[~!ï9ªprecompile…¤nameªprecompile¨subtasks€«finished_atËAÙö[~!K×§successÃªstarted_atËAÙö[)	ÜŒ§resolve…¤name§resolve¨subtasks€«finished_atËAÙö[(Êş§successÃªstarted_atËAÙö[(_Ìû«finished_atËAÙö[~!ï1§successÃªstarted_atËAÙö[!İ¿£run…¤name£run¨subtasks‚°resolve_topology…¤name°resolve_topology¨subtasks€«finished_atËAÙö[‹6Û§successÃªstarted_atËAÙö[‹4+¨evaluate…¤name¨evaluate¨subtasks‚¡1…¤name¡1¨subtasks€«finished_atËAÙö[‹xÕ§successÃªstarted_atËAÙö[‹b¿¡2…¤name¡2¨subtasks€«finished_atËAÙö[‹ï§successÃªstarted_atËAÙö[‹xê«finished_atËAÙö[‹ü§successÃªstarted_atËAÙö[‹6ß«finished_atËAÙö[‹ü§successÃªstarted_atËAÙö[‹4&«finished_atÀ§successÀªstarted_atËAÙö[ §— ¢op£add¤path‘«status_treeµids_of_cells_that_ran’Ù$e3c074b4-7d4e-4a02-8d14-ffdc54439ecbÙ$9bc40166-338b-4060-bb76-16e30e3f7086

@@ -17,8 +17,7 @@ end
 
 rs_norecord(j) = foldl(first∘schensted_insert!, j; init=YoungTableau{eltype(j)}())
 function rs_pair(j)
-    T = eltype(j)
-	P, Q = YoungTableau{T}(), YoungTableau{T}()
+	P, Q = YoungTableau{eltype(j)}(), YoungTableau{Int}()
 	for (n, k) in enumerate(j)
 		P, i = schensted_insert!(P, k)
 		Q, _i = schensted_insert!(Q, n, i)

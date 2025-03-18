@@ -58,6 +58,14 @@ end
     @test rows(YoungTableaux.ColumnMajor{true}(), P') == rows(P')
 end
 
+@testitem "RSK" begin
+    π = [4, 6, 3, 8, 1, 2, 7, 5]
+    @test rs_pair(π) == rsk_pair(eachindex(π), π)
+
+    P, Q = rsk_pair("112233", "121324")
+    P′, Q′ = YoungTableau{Char}([['1', '1', '2', '4'], ['2', '3']]), YoungTableau{Char}([['1', '1', '2', '3'], ['2', '3']])
+end
+
 @testitem "doctests" begin
     using Documenter
 

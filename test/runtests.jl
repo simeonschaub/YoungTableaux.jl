@@ -59,6 +59,8 @@ end
     @test length(reduce(vcat, rows(P'))) == 100000
 
     @test rows(YoungTableaux.ColumnMajor{true}(), P') == rows(P')
+
+    @test YoungTableaux.cols(eachindex(P')) == YoungTableaux.rows(eachindex(P')')
 end
 
 @testitem "RSK" begin

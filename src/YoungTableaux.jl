@@ -3,7 +3,7 @@ module YoungTableaux
 # credits to @tkf on discourse: https://discourse.julialang.org/t/fun-one-liners/28352/57
 @doc let path = joinpath(dirname(@__DIR__), "README.md")
     include_dependency(path)
-    open(path) do io
+    open(path) do io::IO
         lines = eachline(io)
         # skip badges in lines 2-6
         s = first(lines) * '\n' * join(Iterators.drop(lines, 5), '\n')
@@ -203,7 +203,7 @@ end
 function cols(::ColumnMajor, (; diagram)::EachIndexOf)
     rs = cols(diagram)
     return mappedarray(LinearIndices(rs)) do j
-        mappedarray(i -> CartesianIndex(i, j), LinearIndices(rs[i]))
+        mappedarray(i -> CartesianIndex(i, j), LinearIndices(rs[j]))
     end
 end
 Base.eachindex(d::AbstractDiagram) = EachIndexOf(d)

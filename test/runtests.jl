@@ -71,6 +71,19 @@ end
     P′, Q′ = YoungTableau{Char}([['1', '1', '2', '4'], ['2', '3']]), YoungTableau{Char}([['1', '1', '2', '3'], ['2', '3']])
 end
 
+@testitem "Makie" begin
+    using CairoMakie
+
+    π = [4, 6, 3, 8, 1, 2, 7, 5]
+    P, Q = YoungTableaux.rs_pair(π)
+
+    f = Figure()
+    ax = Axis(f[1, 1]; autolimitaspect = 1)
+    text_attributes = Attributes(; color = :red)
+    @test plot!(ax, P; text_attributes) isa Makie.Plot
+    text_attributes.color = :blue # test this doesn't error
+end
+
 @testitem "doctests" begin
     using Documenter
 
